@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+    <!-- CREO UN BLOQUE TITULO, PARA AGREGAR EL TITULO EN CADA TEMPLATE-->
+    {% block titulo %}
+    <title>Emprendemos Chaco</title>
+    {% endblock %}
+
+    <!--CREO UN BLOQUE CSS DONDE SOLO DEBEN ESTAR LOS CSS DE LA BASE, EL RESTO SE AGREGA EN CADA TEMPLATE -->
+    {% block css %}
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/base/base.css' %}">
+    {% endblock %}
+</head>
+    
+<body>
+    <header>
+		<div class="container-fluid d-flex justify-content-between align-items-center" style="background-color: #ff0000;">
+			<!-- Sección izquierda: Logo y texto -->
+			<div class="d-flex align-items-center">
+				<a class="navbar-brand text-white" href="{% url 'home' %}">
+					<img src="{% static 'img/base/Logo.png' %}" width="75" height="auto" class="img-responsive" alt="Responsive image">
+					<span class="mb-0 ml-2">Emprendemos Chaco</span>
+				</a>
+			</div>
+		
+			<!-- Sección derecha: Registrate e Inicia sesión -->
+			<div class="d-flex flex-column align-items-end" style="margin-right: 20px;">
+				{% if user.is_authenticated %}
+				<div>
+					<a class="btn btn-boton_personalizado mr-2 text-uppercase">BIENVENIDO</a>
+				</div>
+				<div>
+					<a class="btn btn-boton_personalizado mr-2">SALIR</a>
+				</div>
+				{% else %}
+				<a class="text-white mb-2">REGISTRARSE</a> 
+				<a class="text-white mb-2" style="margin-right: 15px;">ACCEDER</a>
+				{% endif %}
+			</div>
+		</div>
+    </header>
+    <!--NAVBAR-->
+	<!--<nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #0008ff;">
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>     
+		<div class="collapse navbar-collapse container-fluid d-flex justify-content-start " id="navbarTogglerDemo02">
+			<div class="text-center">
+				<ul class="navbar-nav">					
+					<ul class="nav-item">
+						<a class="btn btn-navbar">Categorias</a>
+					</ul> 
+				</ul>       
+			</div>
+			<div class=" container-fluid d-flex flex-column align-items-end" >
+				<a class="btn btn-navbar">Buscar Posteos</a>
+			</div>
+			<div class="d-flex justify-content-center">       
+				
+			</div>        
+		</div>            
+	</nav>-->
+	<nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #0008ff;">
+		<div class="container-fluid">
+		  <!-- Botón para colapsar en pantallas pequeñas -->
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+				<!-- Contenido de la navbar -->
+				<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+					<!-- Menú de categorías desplegable -->
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					  <li class="nav-item dropdown">
+						<a class="btn btn-navbar dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						  Categorías
+						</a>
+						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+						  <li><a class="dropdown-item" href="#">Categoría 1</a></li>
+						  <li><a class="dropdown-item" href="#">Categoría 2</a></li>
+						  <li><a class="dropdown-item" href="#">Categoría 3</a></li>
+						</ul>
+					  </li>
+					</ul>
+			  
+					<!-- Botón de búsqueda alineado al lado derecho -->
+					<div class="d-flex ms-auto">
+					  <a class="btn btn-navbar" href="#">Buscar Posteos</a>
+					</div>
+			</button>
+		  </div>
+		</div>
+	  </nav>
+	<!--FIN NAVBAR-->		       
+</body>
+
