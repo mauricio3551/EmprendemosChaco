@@ -1,20 +1,17 @@
 {% extends 'base.html' %}
 
-{% block title %}Inicio - Mi Blog{% endblock %}
+{% block title %}Resultados de Búsqueda{% endblock %}
 
 {% block content %}
-    <p>HOLA EQUIPO 9 blabla</p>
-    <h1>Entradas del Blog</h1>
-    <ul>
-        {% for profile in profiles %}
-            <li>{{ profile.title }} - {{ profile.created_at }}</li>
-        {% endfor %}
-    </ul>
-
     <div class="contenido">
-        <h4>Buscar Items</h4>
+        <h4>Resultados de Búsqueda para "{{ query }}"</h4>
+
         <form method="GET" action="{% url 'search_results' %}"> 
-            <input type="text" name="query" placeholder="Buscar...">
+            {{ form.search }}  <!-- Campo de búsqueda -->
+            {{ form.category }}  <!-- Campo de categorías -->
+            {{ form.author }}  <!-- Campo de autor -->
+            {{ form.antiguedad }}  <!-- Campo de antigüedad -->
+            {{ form.order }}  <!-- Campo de orden -->
             <button type="submit">Buscar</button>
         </form>
 
@@ -22,7 +19,7 @@
             <ul>
                 {% if items %}
                     {% for item in items %}
-                        <li>{{ item.name }}</li>
+                        <li>{{ item.name }} - {{ item.category }}</li>
                     {% endfor %}
                 {% else %}
                     <li>No se encontraron resultados.</li>
@@ -31,3 +28,5 @@
         </div>
     </div>
 {% endblock %}
+
+
