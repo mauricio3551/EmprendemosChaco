@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ item.name }}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}"> <!-- Añadir estilos -->
+</head>
+<body>
+    <h1>{{ item.name }}</h1>
+    <p><strong>Descripción:</strong> {{ item.description }}</p> <!-- Asegúrate de tener este campo en tu modelo -->
+    <p><strong>Categoría:</strong> {{ item.category }}</p> <!-- Muestra la categoría -->
+    <p><strong>Autor:</strong> {{ item.author }}</p> <!-- Muestra el autor -->
+    <p><strong>Fecha de Creación:</strong> {{ item.creation_date }}</p> <!-- Muestra la fecha de creación -->
+
+    <a href="{% url 'search_results' %}">Volver a buscar</a> <!-- Enlace de navegación -->
+    <br>
+    <a href="{% url 'item_list' %}">Volver a la lista de items</a> <!-- Opción para volver a la lista -->
+</body>
+</html>
+

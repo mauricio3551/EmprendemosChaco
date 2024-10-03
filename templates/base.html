@@ -1,14 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Document{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}"> <!-- Asegúrate de tener un archivo CSS -->
 </head>
 <body>
     <header>
         <h1>Mi Blog</h1>
-        <!-- Aquí puedes agregar un menú o navegación -->
+        <nav>
+            <ul>
+                <li><a href="{% url 'home_view' %}">Inicio</a></li>
+                <li><a href="{% url 'item_list' %}">Artículos</a></li>
+                <li><a href="{% url 'search_results' %}">Buscar</a></li>
+                <li><a href="{% url 'profile_list' %}">Perfiles</a></li>
+            </ul>
+        </nav>
     </header>
 
     <main>
@@ -21,3 +30,5 @@
     </footer>
 </body>
 </html>
+
+

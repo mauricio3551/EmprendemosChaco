@@ -7,14 +7,16 @@
     <h1>Entradas del Blog</h1>
     <ul>
         {% for profile in profiles %}
-            <li>{{ profile.title }} - {{ profile.created_at }}</li>
+            <li>
+                <a href="{% url 'detalle_perfil' profile.id %}">{{ profile.title }}</a> - {{ profile.created_at }}
+            </li>
         {% endfor %}
     </ul>
 
     <div class="contenido">
         <h4>Buscar Items</h4>
         <form method="GET" action="{% url 'search_results' %}"> 
-            <input type="text" name="query" placeholder="Buscar...">
+            <input type="text" name="search" placeholder="Buscar..."> <!-- Cambié `query` a `search` para que coincida con tu formulario -->
             <button type="submit">Buscar</button>
         </form>
 
@@ -22,7 +24,9 @@
             <ul>
                 {% if items %}
                     {% for item in items %}
-                        <li>{{ item.name }}</li>
+                        <li>
+                            <a href="{% url 'detalle_item' item.id %}">{{ item.name }}</a>
+                        </li>
                     {% endfor %}
                 {% else %}
                     <li>No se encontraron resultados.</li>
@@ -31,3 +35,4 @@
         </div>
     </div>
 {% endblock %}
+

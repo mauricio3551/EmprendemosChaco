@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import Item
 from .forms import SearchForm
 from datetime import date
+from django.shortcuts import get_object_or_404
 
 from .models import Profile
 
@@ -55,3 +56,7 @@ def search_results(request):
             items = items.filter(category=category)
 
     return render(request, 'search_results.html', {'form': form, 'items': items})
+
+def detalle_item_view(request, item_id):
+    item = get_object_or_404(Item, id=item_id)
+    return render(request, 'detalle_item.html', {'item': item})

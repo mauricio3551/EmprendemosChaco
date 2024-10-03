@@ -15,10 +15,13 @@
         </form>
 
         <div id="results">
+            <h5>Resultados de Items</h5>
             <ul>
                 {% if items %}
                     {% for item in items %}
-                        <li>{{ item.name }} - {{ item.category }}</li>
+                        <li>
+                            <a href="{% url 'detalle_item' item.id %}">{{ item.name }}</a> - {{ item.category }}
+                        </li>
                     {% endfor %}
                 {% else %}
                     <li>No se encontraron resultados.</li>
@@ -27,6 +30,7 @@
         </div>
     </div>
 {% endblock %}
+
 
 
 
