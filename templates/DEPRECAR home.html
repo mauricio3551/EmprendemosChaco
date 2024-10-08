@@ -7,9 +7,11 @@
 </head>
 <body>
     <p>HOLA EQUIPO 9 blabla</p>
-        <h1>Entrada de Usuarios</h1>
+        <h1>Entradas del Blog</h1>
             <ul>
-                <li class="menu"><a href="{% url 'usuarios:RegisterUsers' %}">REGISTRAR</a></li>
+                {% for profiles in profiles %}
+            <li>{{ profiles.title }} - {{ profiles.created_at }}</li>
+                {% endfor %}
             </ul>
 </body>
 </html>
