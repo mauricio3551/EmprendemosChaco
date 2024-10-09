@@ -7,3 +7,4 @@ urlpatterns = [
     path('Registro/',views.RegistroUsuario.as_view(), name = 'RegisterUsers'),
 
 ]
+
