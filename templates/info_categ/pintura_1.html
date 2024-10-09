@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% load static %}  <!-- Asegúrate de que esta línea esté aquí, antes de usar la etiqueta static -->
+
+{% block title %}
+    Pintura 1
+{% endblock %}
+
+{% block content %}
+    <h1>Pintura 1</h1>
+    <p>Descripción de la categoría pintura 1.</p>
+
+    <img src="{% static 'img/pintura_1.jpg' %}" alt="Pintura 1">
+
+    <!-- Puedes añadir más contenido aquí -->
+{% endblock %}
+

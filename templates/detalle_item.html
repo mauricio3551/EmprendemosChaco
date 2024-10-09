@@ -3,18 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ item.name }}</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}"> <!-- Añadir estilos -->
+    {% load static %}  <!-- Asegúrate de que esta línea esté aquí -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
     <h1>{{ item.name }}</h1>
-    <p><strong>Descripción:</strong> {{ item.description }}</p> <!-- Asegúrate de tener este campo en tu modelo -->
-    <p><strong>Categoría:</strong> {{ item.category }}</p> <!-- Muestra la categoría -->
-    <p><strong>Autor:</strong> {{ item.author }}</p> <!-- Muestra el autor -->
-    <p><strong>Fecha de Creación:</strong> {{ item.creation_date }}</p> <!-- Muestra la fecha de creación -->
+    
+    {% if item.image %}  <!-- Si tienes una imagen -->
+        <img src="{{ item.image.url }}" alt="{{ item.name }}" style="max-width: 300px; max-height: 300px;">
+    {% endif %}
 
-    <a href="{% url 'search_results' %}">Volver a buscar</a> <!-- Enlace de navegación -->
+    <p><strong>Descripción:</strong> {{ item.description }}</p>
+    <p><strong>Categoría:</strong> {{ item.category }}</p>
+    <p><strong>Autor:</strong> {{ item.author }}</p>
+    <p><strong>Fecha de Creación:</strong> {{ item.creation_date }}</p>
+
+    <a href="{% url 'search_results' %}">Volver a buscar</a>
     <br>
-    <a href="{% url 'item_list' %}">Volver a la lista de items</a> <!-- Opción para volver a la lista -->
+    <a href="{% url 'item_list' %}">Volver a la lista de items</a>
 </body>
 </html>
+
+
+
 

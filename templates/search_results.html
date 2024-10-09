@@ -4,7 +4,7 @@
 
 {% block content %}
     <div class="contenido">
-        <h4>Resultados de Búsqueda para "{{ form.search.value }}"</h4> <!-- Muestra el término de búsqueda -->
+        <h4>Resultados de Búsqueda para "{{ form.search.value }}"</h4>
 
         <form method="GET" action="{% url 'search_results' %}"> 
             {{ form.search }}  <!-- Campo de búsqueda -->
@@ -16,7 +16,7 @@
         </form>
 
         <div id="results">
-            <h5>Resultados Encontrados</h5> <!-- Encabezado adicional -->
+            <h5>Resultados Encontrados</h5>
             <ul>
                 {% if items %}
                     {% for item in items %}
@@ -30,9 +30,11 @@
             </ul>
         </div>
 
-        <a href="{% url 'item_list' %}">Volver a la lista de items</a> <!-- Enlace de navegación -->
+        <a href="{% url 'item_list' %}">Volver a la lista de items</a>
     </div>
 {% endblock %}
+
+
 
 
 

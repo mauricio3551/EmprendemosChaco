@@ -2,33 +2,57 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Document{% endblock %}</title>
+    <title>{% block title %}Mi Blog{% endblock %}</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}"> <!-- Asegúrate de tener un archivo CSS -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
     <header>
-        <h1>Mi Blog</h1>
-        <nav>
-            <ul>
-                <li><a href="{% url 'home_view' %}">Inicio</a></li>
-                <li><a href="{% url 'item_list' %}">Artículos</a></li>
-                <li><a href="{% url 'search_results' %}">Buscar</a></li>
-                <li><a href="{% url 'profile_list' %}">Perfiles</a></li>
-            </ul>
+        <nav class="navbar">
+            <div class="nav-left">
+                <span class="brand">Emprendimiento Chaco</span> <!-- Título del blog -->
+            </div>
+            <div class="nav-right">
+                <ul>
+                    <li><a href="{% url 'home_view' %}">Inicio</a></li>
+                    <li>|</li> <!-- Separador -->
+                    <li><a href="{% url 'profile_list' %}">Perfiles</a></li>
+                </ul>
+            </div>
         </nav>
     </header>
-
+    
     <main>
-        {% block content %}
-        {% endblock %}
+        <h1>Catégorias</h1>
+        <div class="categorias">
+            <a href="{% url 'categoria_view' 'pintura' %}" class="button">Pintura</a>
+            <a href="{% url 'categoria_view' 'musica' %}" class="button">Música</a>
+            <a href="{% url 'categoria_view' 'muebles' %}" class="button">Muebles</a>
+            <a href="{% url 'categoria_view' 'moda' %}" class="button">Moda</a>
+            <a href="{% url 'categoria_view' 'manualidades' %}" class="button">Manualidades</a>
+            <a href="{% url 'categoria_view' 'comida' %}" class="button">Comida</a>
+            <a href="{% url 'item_list' %}" class="button">Todo</a>
+        </div>
+
+        {% block content %}{% endblock %}
     </main>
 
     <footer>
-        <p>&copy; 2024 Mi Blog</p>
+        <p>© 2024 Mi Blog</p>
     </footer>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
 
 

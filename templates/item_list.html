@@ -5,14 +5,17 @@
 {% block content %}
     <div class="contenido">
         <h4>Buscar Items</h4>
-        <form method="GET" action="{% url 'search_results' %}"> 
-            {{ form.search }}  <!-- Campo de búsqueda -->
-            {{ form.category }}  <!-- Campo de categorías -->
-            {{ form.author }}  <!-- Campo de autor -->
-            {{ form.antiguedad }}  <!-- Campo de antigüedad -->
-            {{ form.order }}  <!-- Campo de orden -->
-            <button type="submit">Buscar</button>
-        </form>
+        <details>
+            <summary>Mostrar Opciones de Búsqueda</summary>
+            <form method="GET" action="{% url 'search_results' %}"> 
+                {{ form.search }}  <!-- Campo de búsqueda -->
+                {{ form.category }}  <!-- Campo de categorías -->
+                {{ form.author }}  <!-- Campo de autor -->
+                {{ form.antiguedad }}  <!-- Campo de antigüedad -->
+                {{ form.order }}  <!-- Campo de orden -->
+                <button type="submit">Buscar</button>
+            </form>
+        </details>
 
         <div id="results">
             <h5>Resultados de Items</h5>
@@ -28,8 +31,21 @@
                 {% endif %}
             </ul>
         </div>
+
+        <!-- Botón para mostrar todos los ítems -->
+        <form method="GET" action="{% url 'item_list' %}">
+            <button type="submit" name="show_all" value="1">Mostrar Todos</button>
+        </form>
     </div>
 {% endblock %}
+
+
+
+
+
+
+
+
 
 
 

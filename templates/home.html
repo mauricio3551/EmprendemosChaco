@@ -5,18 +5,11 @@
 {% block content %}
     <p>HOLA EQUIPO 9 blabla</p>
     <h1>Entradas del Blog</h1>
-    <ul>
-        {% for profile in profiles %}
-            <li>
-                <a href="{% url 'detalle_perfil' profile.id %}">{{ profile.title }}</a> - {{ profile.created_at }}
-            </li>
-        {% endfor %}
-    </ul>
 
     <div class="contenido">
         <h4>Buscar Items</h4>
         <form method="GET" action="{% url 'search_results' %}"> 
-            <input type="text" name="search" placeholder="Buscar..."> <!-- Cambié `query` a `search` para que coincida con tu formulario -->
+            <input type="text" name="search" placeholder="Buscar...">
             <button type="submit">Buscar</button>
         </form>
 
@@ -35,4 +28,8 @@
         </div>
     </div>
 {% endblock %}
+
+
+
+
 

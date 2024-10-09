@@ -1,0 +1,107 @@
+/* Establecer fondo blanco para toda la página */
+body {
+    background-color: white;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Estilo del encabezado y navegación */
+header {
+    background-color: black; /* Fondo negro */
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Estilo para la barra de navegación */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+/* Estilo del título "Emprendimiento Chaco" */
+.brand {
+    color: white;  /* Título en color blanco */
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Estilo de la lista de navegación */
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+nav li {
+    margin-right: 15px; /* Espacio entre elementos */
+    display: inline;
+    color: white;
+}
+
+/* Estilo para los enlaces de navegación */
+nav a {
+    color: purple; /* Color de los enlaces */
+    text-decoration: none; /* Sin subrayado */
+}
+
+nav a:hover {
+    text-decoration: underline; /* Subrayado al pasar el mouse */
+}
+
+/* Centrar los botones de categoría */
+.categorias {
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente */
+    flex-wrap: wrap; /* Permitir que los botones se envuelvan en varias líneas si es necesario */
+    margin: 20px 0;
+}
+
+/* Estilo de los botones */
+.button {
+    padding: 10px 20px;
+    margin: 5px;
+    background-color: #007BFF; /* Color de fondo del botón */
+    color: white;
+    text-decoration: none; /* Sin subrayado */
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #0056b3; /* Color al pasar el mouse */
+}
+
+/* Estilo para el contenido principal */
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centrar el contenido */
+}
+
+/* Estilo del footer */
+footer {
+    text-align: center; /* Centrar el texto en el footer */
+    margin-top: 20px;
+    padding: 10px 0;
+}
+
+/* Estilo para la caja de categorías */
+.categorias-container {
+    background-color: black; /* Fondo negro */
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+
+
+
+
+
+
+
+
+

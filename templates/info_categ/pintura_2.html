@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Pintura 2{% endblock %}
+
+{% block content %}
+    <h1>Pintura 2</h1>
+    <p>Aquí puedes poner información sobre Pintura 2.</p>
+    <img src="{% static 'img/pintura_2.jpg' %}" alt="Pintura 2">
+    <p><strong>Autor:</strong> Autor de Pintura 2</p>
+    <p><strong>Fecha de creación:</strong> Fecha de Pintura 2</p>
+
+    <a href="{% url 'categoria_view' 'pintura' %}">Volver a la categoría de Pintura</a>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% load static %}  <!-- Debe estar aquí -->
+{% block title %}{{ categoria|capfirst }}{% endblock %}
+
+{% block content %}
+    <h1>{{ categoria|capfirst }}</h1>
+    <p>
+        {% if categoria == 'musica' %}
+            La música es una forma de arte que combina sonidos y ritmos para expresar emociones.
+        {% elif categoria == 'pintura' %}
+            La pintura es una forma de expresión artística que utiliza pigmentos sobre una superficie.
+        {% else %}
+            Esta categoría no tiene descripción disponible.
+        {% endif %}
+    </p>
+
+    {% if categoria == 'pintura' %}
+        <h2>Ítems destacados de Pintura:</h2>
+        <ul>
+            <li><a href="{% url 'pintura_1' %}">Pintura 1</a></li>
+            <li><a href="{% url 'pintura_2' %}">Pintura 2</a></li>
+        </ul>
+    {% endif %}
+
+    <ul>
+        {% for item in items %}
+            <li>
+                <a href="{% url 'detalle_item' item.id %}">{{ item.name }}</a> - {{ item.description }}
+            </li>
+        {% empty %}
+            <li>No hay ítems en esta categoría.</li>
+        {% endfor %}
+    </ul>
+    
+    <a href="{% url 'item_list' %}">Volver a la lista de ítems</a>
+{% endblock %}
+
+
+
+
+
