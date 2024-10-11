@@ -22,9 +22,14 @@ from . import views
 from django.contrib.auth import views as auth
 
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('Usuarios/', include('apps.usuarios.urls')),
     path('',views.Home, name='home'),
-    path('Logout' , auth.LogoutView.as_view() , name='logout'),
+    path('Logout' , auth.LogoutView.as_view(next_page='home') , name='logout'),
+    
+    
+    
+    
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
