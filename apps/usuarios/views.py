@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Item, Profile
 from .forms import SearchForm, ItemForm  # Asegúrate de importar 'ItemForm'
 from datetime import date
+from django.db.models import Q  # Importar Q para consultas más complejas
+
 
 def profile_list(request):
     profiles = Profile.objects.all()
@@ -25,10 +27,15 @@ def item_list(request):
         # Filtrar por búsqueda
         if search_term:
             items = items.filter(name__icontains=search_term)
+
         if category:
             items = items.filter(category=category)
+
+        # Filtrar por autor utilizando Q para permitir búsquedas más complejas
         if author:
-            items = items.filter(author__icontains=author)
+            author = author.strip()  # Eliminar espacios adicionales
+            items = items.filter(Q(author__icontains=author))
+
         if antiguedad:
             fecha_limite = date.today().year - antiguedad
             items = items.filter(creation_date__year__lte=fecha_limite)
@@ -43,6 +50,9 @@ def item_list(request):
 
 
 
+
+
+
 def home_view(request):
     return render(request, 'home.html')
 
@@ -53,14 +63,36 @@ def search_results(request):
     if form.is_valid():
         search_term = form.cleaned_data.get('search')
         category = form.cleaned_data.get('category')
+        author = form.cleaned_data.get('author')
 
-        # Filtrar según la búsqueda
+        # Filtrar por el nombre del ítem si hay un término de búsqueda
         if search_term:
             items = Item.objects.filter(name__icontains=search_term)
+
+        # Filtrar por categoría
         if category:
             items = items.filter(category=category)
 
+        # Filtrar por autor
+        if author:
+            items = items.filter(author__icontains=author)
+            print(f'Buscando autor: {author}')
+            print(f'Ítems encontrados por autor: {items}')
+
+        # Imprime el QuerySet en la consola
+        print(f'Search Results: {[item.name for item in items]}')  # Muestra solo los nombres de los ítems encontrados
+
+        # Ordenar si se especifica
+        order = form.cleaned_data.get('order')
+        if order:
+            items = items.order_by(order)
+
     return render(request, 'search_results.html', {'form': form, 'items': items})
+
+
+
+
+
 
 def detalle_item_view(request, item_id):
     item = get_object_or_404(Item, id=item_id)
@@ -68,14 +100,14 @@ def detalle_item_view(request, item_id):
 
 # Nueva vista para manejar la categoría
 def categoria_view(request, categoria):
-    items = Item.objects.filter(category=categoria)  # Filtra los ítems por categoría
+    items = Item.objects.filter(category__iexact=categoria)  # Uso de iexact para evitar problemas de mayúsculas/minúsculas
     return render(request, 'categoria.html', {'items': items, 'categoria': categoria})
 
-def pintura_1_view(request):
-    return render(request, 'info_categ/pintura_1.html')  # Asegúrate de que la ruta sea correcta
 
-def pintura_2_view(request):
-    return render(request, 'info_categ/pintura_2.html')  # Asegúrate de que la ruta sea correcta
+  
+
+
+
 
 
 def item_form_view(request, item_id=None):

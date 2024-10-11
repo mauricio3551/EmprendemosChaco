@@ -2,7 +2,8 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Mi Blog{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Blog</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
@@ -10,38 +11,76 @@
     <header>
         <nav class="navbar">
             <div class="nav-left">
-                <span class="brand">Emprendimiento Chaco</span> <!-- Título del blog -->
+                <span class="brand">Emprendimiento Chaco</span>
             </div>
             <div class="nav-right">
                 <ul>
                     <li><a href="{% url 'home_view' %}">Inicio</a></li>
-                    <li>|</li> <!-- Separador -->
                     <li><a href="{% url 'profile_list' %}">Perfiles</a></li>
+                    <li class="dropdown">
+                        <a href="#">Categorías</a>
+                        <ul class="dropdown-content">
+                            <li><a href="{% url 'categoria_view' 'Pintura' %}">Pintura</a></li>
+                            <li><a href="{% url 'categoria_view' 'Musica' %}">Música</a></li>
+                            <li><a href="{% url 'categoria_view' 'Muebles' %}">Muebles</a></li>
+                            <li><a href="{% url 'categoria_view' 'Moda' %}">Moda</a></li>
+                            <li><a href="{% url 'categoria_view' 'Manualidades' %}">Manualidades</a></li>
+                            <li><a href="{% url 'categoria_view' 'Comida' %}">Comida</a></li>
+                            <li><a href="{% url 'item_list' %}">Todo</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </nav>
+        <h1 class="main-title">Emprendimiento</h1>  <!-- Título principal -->
     </header>
-    
-    <main>
-        <h1>Catégorias</h1>
-        <div class="categorias">
-            <a href="{% url 'categoria_view' 'pintura' %}" class="button">Pintura</a>
-            <a href="{% url 'categoria_view' 'musica' %}" class="button">Música</a>
-            <a href="{% url 'categoria_view' 'muebles' %}" class="button">Muebles</a>
-            <a href="{% url 'categoria_view' 'moda' %}" class="button">Moda</a>
-            <a href="{% url 'categoria_view' 'manualidades' %}" class="button">Manualidades</a>
-            <a href="{% url 'categoria_view' 'comida' %}" class="button">Comida</a>
-            <a href="{% url 'item_list' %}" class="button">Todo</a>
-        </div>
 
+    <main>
         {% block content %}{% endblock %}
     </main>
 
     <footer>
-        <p>© 2024 Mi Blog</p>
+        <p>&copy; 2024 - Tu Emprendimiento. Todos los derechos reservados.</p>
     </footer>
+    
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

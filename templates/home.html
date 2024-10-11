@@ -3,15 +3,18 @@
 {% block title %}Inicio - Mi Blog{% endblock %}
 
 {% block content %}
-    <p>HOLA EQUIPO 9 blabla</p>
-    <h1>Entradas del Blog</h1>
+    <h1>Entradas del Blog</h1>  <!-- Mantén el título de las entradas del blog aquí -->
 
     <div class="contenido">
-        <h4>Buscar Items</h4>
-        <form method="GET" action="{% url 'search_results' %}"> 
-            <input type="text" name="search" placeholder="Buscar...">
-            <button type="submit">Buscar</button>
-        </form>
+        <div class="search-header">  <!-- Contenedor para el título y el buscador -->
+            <h4>Buscar Items</h4>
+            <div class="search-container">  
+                <form method="GET" action="{% url 'search_results' %}"> 
+                    <input type="text" name="search" placeholder="Buscar...">
+                    <button type="submit">Buscar</button>
+                </form>
+            </div>
+        </div>
 
         <div id="results">
             <ul>
@@ -22,12 +25,19 @@
                         </li>
                     {% endfor %}
                 {% else %}
-                    <li>No se encontraron resultados.</li>
+                    {% if request.GET.search %}
+                        <li>No se encontraron resultados.</li>
+                    {% endif %}
                 {% endif %}
             </ul>
         </div>
     </div>
 {% endblock %}
+
+
+
+
+
 
 
 

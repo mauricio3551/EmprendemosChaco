@@ -18,26 +18,26 @@ class SearchForm(forms.Form):
     search = forms.CharField(required=False, label='Buscar')
     category = forms.ChoiceField(choices=[
         ('', 'Todas las categorías'),
-        ('cat1', 'Pintura'),
-        ('cat2', 'Comida'),
-        ('cat3', 'Moda'),
-        ('cat4', 'Muebles'),
-        ('cat5', 'Manualidades'),
-        ('cat6', 'Musica'),
+        ('Pintura', 'Pintura'),
+        ('Comida', 'Comida'),
+        ('Moda', 'Moda'),
+        ('Muebles', 'Muebles'),
+        ('Manualidades', 'Manualidades'),
+        ('Musica', 'Musica'),
     ], required=False)
-    author = forms.CharField(required=False, label='Autor')
+    author = forms.CharField(required=False, label='Autor')  # Campo para buscar por autor
     antiguedad = forms.IntegerField(required=False, label='Antigüedad (en años)')
     order = forms.ChoiceField(choices=[
         ('name', 'Ordenar por Nombre'),
         ('-name', 'Ordenar por Nombre (Z-A)'),
     ], required=False)
 
-    # Opcional: Personaliza los widgets o las etiquetas
     def __init__(self, *args, **kwargs):
         super(SearchForm, self).__init__(*args, **kwargs)
         self.fields['search'].widget.attrs.update({'placeholder': 'Buscar ítem'})
         self.fields['category'].widget.attrs.update({'placeholder': 'Categoría'})
         self.fields['author'].widget.attrs.update({'placeholder': 'Autor'})
         self.fields['antiguedad'].widget.attrs.update({'placeholder': 'Años'})
+
 
 
