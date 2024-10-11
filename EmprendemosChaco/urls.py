@@ -21,6 +21,9 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.Home),
-    path('', include('apps.usuarios.urls')),
+    path('', views.Home, name='Home'),  # Asegúrate de que 'home_view' esté definida
+    path('categoria/', include('apps.categoria.urls')),  # Ajusta la ruta aquí
+    path('users/', include('apps.usuarios.urls')),
+    
 ]
+
