@@ -24,7 +24,9 @@ from django.contrib.auth import views as auth
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('Usuarios/', include('apps.usuarios.urls')),
-    path('',views.Home, name='home'),
+    path('',views.Inicio, name='inicio'),
     path('Logout' , auth.LogoutView.as_view() , name='logout'),
+
+    path('usuarios/', include('apps.usuarios.urls')),
+    path('', include('apps.post.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

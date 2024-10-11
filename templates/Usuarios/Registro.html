@@ -1,10 +1,20 @@
-{% extends 'registro.html' %}
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'css/registro/paginaRegistro.css' %}">
+{% endblock %}
+
+{% block js %}
+    {{ block.super }}
+{% endblock %}
 
 {% block titulo %}
   Registro
 {% endblock titulo %}
 
-{% block contenido %}
+{% block content %}
 
     
     <form action="" method="POST" enctype="multipart/form-data">{% csrf_token %}
@@ -25,9 +35,7 @@
          <button class="botons" type="submit">Registrar</button>
          <!-- url que pregunta si el usuario ya tiene cuenta y lo redireccione a la pagina del Login o inicio de sesion -->
         <p><a href="#">¿Ya tienen Cuenta?</a></p>
-
-        
     </form>
 
 
-{% endblock contenido%}
+{%  endblock content %}
