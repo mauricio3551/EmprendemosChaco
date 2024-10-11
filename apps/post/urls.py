@@ -1,7 +1,7 @@
 from django.urls import path
 from apps.post.views import *
 
-app_name = "posts"
+app_name = "post"
 
 urlpatterns = [
     path('post/crear', PostCrearView.as_view(), name='crearPost'),

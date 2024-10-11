@@ -11,11 +11,20 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 import os
 from pathlib import Path
+from django.urls import reverse_lazy
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Application definition
+AUTH_USER_MODEL = 'usuarios.NewUser'
+LOGIN_REDIRECT_URL = reverse_lazy('inicio')
+LOGOUT_REDIRECT_URL = reverse_lazy('inicio')
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
+
+#LOGIN_URL = reverse_lazy('login')
+
+ALLOWED_IMG = ('.jpg', '.jpeg', '.bmp', '.png')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -26,6 +35,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'apps.usuarios',
     'apps.post',
+    'crispy_forms',
+    'crispy_bootstrap5',
 ]
 
 MIDDLEWARE = [

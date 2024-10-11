@@ -35,10 +35,10 @@
 			<div class="d-flex flex-column align-items-end" style="margin-right: 20px;">
 				{% if user.is_authenticated %}
 				<div>
-					<a class="btn btn-boton_personalizado mr-2 text-uppercase" >BIENVENIDO </a> <!--ACA IRIA BIENVENIDO [NOMBRE USUARIO]-->
+					<a class="text-white mb-2 mr-2 text-uppercase" >BIENVENIDO {{user.username | upper }} </a> <!--ACA IRIA BIENVENIDO [NOMBRE USUARIO]-->
 				</div>
 				<div>
-					<a class="btn btn-boton_personalizado mr-2"href="{% url 'logout' %}">SALIR</a>
+					<a class="text-white mb-2 mr-2" href="{% url 'logout' %}">SALIR</a>
 				</div>
 				{% else %}
 				<a class="text-white mb-2" href="{% url 'usuarios:RegisterUsers'%}">REGISTRARSE</a>
@@ -66,15 +66,23 @@
 					<li class="nav-item ps-2">
 						<a class="nav-link btn btn-navbar">Acerca de nosotros</a>
 					</li>
-					<!--AGREGAR ACA SI USUARIO ES CREADOR ENTONCES QUE APAREZCA EL BOTON CREAR POST-->
+					{% if user.es_superuser %}
+					<li class="nav-item ps-2"></li>
+						<a class="nav-link btn btn-navbar" href="/admin/">Permisos</a>
+					</li>
+					{% endif %}
 				</ul>   
 			</div>
 		</div>
 		<div class="collapse navbar-collapse d-flex justify-content-end pe-2" id="navbarSupportedContent">
 			<div class="text-center">
-				<ul class="navbar-nav ml-auto">
+				<ul class="navbar-nav ml-auto d-flex" style="gap: 10px;">
+					{% if user.es_colaborador or user.is_superuser %}
 					<li class="nav-item">
-						<!--Cambiar luego a algo mas bonito-->
+						<a class="nav-link btn btn-navbar" href="{% url 'post:crearPost' %}">Crear Posteo</a>
+					</li>
+					{% endif %}
+					<li class="nav-item">
 						<a class="nav-link btn btn-navbar" href="#">Buscar Posteos</a>
 					</li>
 				</ul>      

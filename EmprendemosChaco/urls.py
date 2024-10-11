@@ -19,13 +19,15 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 from . import views
-from django.contrib.auth import views as auth
+from django.contrib.auth.views import LogoutView
+from django.urls import reverse_lazy
+
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.Inicio, name='inicio'),
-    path('Logout' , auth.LogoutView.as_view() , name='logout'),
+    path('logout/' , LogoutView.as_view() , name='logout'),
 
     path('usuarios/', include('apps.usuarios.urls')),
     path('', include('apps.post.urls')),

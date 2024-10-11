@@ -2,26 +2,30 @@ from django.db import models
 from django.conf import settings
 from django.core.exceptions import ValidationError
 
+def validar_extension(valor):
+	if not valor.name.endswith(settings.ALLOWED_IMG):
+		raise ValidationError("Ese formato de imagen no esta permitido.")
+
 class Categoria(models.Model):
     id = models.AutoField(primary_key=True)
-    nombre = models.CharField(max_length=50)
+    name = models.CharField(max_length=50)
 
     def __str__(self):
-        return '{}'.format(self.nombre)
+        return '{}'.format(self.name)
 
 class Post(models.Model):
     id = models.AutoField(primary_key=True)
-    titulo = models.CharField(max_length=100)
-    miniatura = models.ImageField(upload_to='post/miniatura')
-    fecha_publicacion = models.DateTimeField(auto_now=True)
-    fecha_actualizacion = models.DateTimeField(auto_now_add=True)
-    contenido = models.TextField()
+    title = models.CharField(max_length=100)
+    thumbnail = models.ImageField(upload_to='post/thumbnail', null=True, blank=False, validators=[validar_extension])
+    publish_date = models.DateTimeField(auto_now=True)
+    update_date = models.DateTimeField(auto_now_add=True)
+    content = models.TextField()
     
-    categoria = models.ForeignKey(Categoria, null=False, blank=False, on_delete=models.CASCADE)
-    usuario = models.ForeignKey(settings.AUTH_USER_MODEL, null=False, blank=False, on_delete=models.CASCADE)
+    category = models.ForeignKey(Categoria, null=False, blank=False, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, null=False, blank=False, on_delete=models.CASCADE)
 
     def __str__(self):
-        return '%s - %s - %s' % (self.titulo, self.categoria, self.usuario)
+        return '%s - %s - %s' % (self.title, self.category, self.user)
     
     @property
     def comments(self):
@@ -33,12 +37,12 @@ class Post(models.Model):
     
 class Comment(models.Model):
     id = models.AutoField(primary_key=True)
-    fecha_creacion = models.DateTimeField(auto_now=True)
-    contenido = models.TextField(max_length=1000)
+    publish_date = models.DateTimeField(auto_now=True)
+    content = models.TextField(max_length=1000)
 
-    usuario = models.ForeignKey(settings.AUTH_USER_MODEL, null=False, blank=False, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, null=False, blank=False, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, null=True, blank=False, on_delete=models.CASCADE, related_name='commentsPost')
 
     def __str__(self):
-       return '%s - %s - %s - %s' % (self.post.titulo, self.usuario, self.id , self.contenido)
+       return '%s - %s - %s - %s' % (self.post.title, self.user, self.id , self.content)
 

@@ -12,11 +12,11 @@ class PostCrearView(LoginRequiredMixin, CreateView):
     form_class = PostForm
     template_name = 'post/postForm.html'
     success_url = reverse_lazy('inicio')
-    login_url = settings.LOGIN_URL
+    #login_url = settings.LOGIN_URL
 
     '''def form_valid(self, form):
         form.instance.usuario = self.request.user
-        if form.instance.miniatura.name:
-            ext = form.instance.miniatura.name.split(".")[-1]
-            form.instance.miniatura.name = form.instance.titulo+'.'+ext
+        if form.instance.thumbnail.name:
+            ext = form.instance.thumbnail.name.split(".")[-1]
+            form.instance.thumbnail.name = form.instance.title+'.'+ext
         return super().form_valid(form)'''
