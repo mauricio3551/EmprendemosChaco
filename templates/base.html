@@ -38,7 +38,7 @@
 					<a class="text-white mb-2 mr-2 text-uppercase" >BIENVENIDO {{user.username | upper }} </a> <!--ACA IRIA BIENVENIDO [NOMBRE USUARIO]-->
 				</div>
 				<div>
-					<a class="btn btn-boton_personalizado mr-2"href="{% url 'usuarios:logout' %}">SALIR</a>
+					<a class="text-white mb-2 mr-2 text-uppercase" href="{% url 'usuarios:logout' %}">SALIR</a>
 				</div>
 				{% else %}
 				<a class="text-white mb-2" href="{% url 'usuarios:RegisterUsers'%}">REGISTRARSE</a>
