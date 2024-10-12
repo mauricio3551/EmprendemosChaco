@@ -1,0 +1,133 @@
+body {
+    /*background-color: #232E2E;*/
+    background: url("/static/portada/image/libra60%.jpg") no-repeat;    
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #464646;
+}
+
+.imagenlogo {
+    background-color: #303535;
+    height: 15vh;
+    background-size: cover;
+    background-position: center;
+}
+
+#page-content {
+    flex: 1 0 auto;    
+}
+
+#pie_pagina{
+    height: 175px;
+    width: 100%;
+}
+
+.cuerpo
+{
+    background-color: #404848!important
+}
+
+.item 
+{
+    font-size: 20px;
+    font-family: 'calibri';
+}
+
+.cuerpo-oscuro
+{
+    background-color: #232E2E;
+}
+
+
+.post-mostrar a
+{
+    color: #232E2E!important;
+} 
+
+.btn-boton_personalizado{
+padding: .375rem .75rem;
+border-radius: .25rem;
+background-color: #EF891E;
+color: #000000;
+font-weight: bold;
+transition: background-color .15s ease-in-out;
+}
+
+.btn-boton_personalizado:hover, .btn-boton_personalizado:focus {
+background-color: #F0B474;
+color: #000000
+}
+
+.btn-boton_personalizado:active {
+background-color: #EF891E;
+}
+
+.btn-navbar{
+padding: .375rem .75rem;
+border-radius: .25rem;
+background-color: #858F8F;
+color: #FFFFFF;
+font-weight: bold;
+transition: background-color .15s ease-in-out;
+}
+
+.btn-navbar:hover, .btn-navbar:focus {
+background-color: #1C2525;
+color: #FFFFFF
+}
+
+.btn-navbar:active {
+background-color: #1C2525;
+}
+
+.btn-buscar{
+padding: .375rem .75rem;
+border-radius: .25rem;
+background-color: #EF891E;
+color: #000000;
+font-weight: bold;
+transition: background-color .15s ease-in-out;
+}
+
+.btn-buscar:hover, .btn-buscar:focus {
+background-color: #F0B474;
+color: #000000
+}
+
+.btn-buscar:active {
+background-color: #EF891E;
+}
+
+/* Asegura que el menú desplegable esté oculto por defecto */
+ul.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: black; /* Fondo negro para los enlaces */
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Cuando el usuario pase el cursor sobre Categorías */
+li.dropdown:hover ul.dropdown-content {
+    display: block;
+}
+
+/* Estilos para los enlaces en el menú desplegable */
+ul.dropdown-content li {
+    display: block;
+}
+
+ul.dropdown-content li a {
+    color: white;
+    text-decoration: none;
+    padding: 12px 16px;
+    display: block;
+}
+
+/* Color de fondo cuando se pasa sobre una categoría */
+ul.dropdown-content li a:hover {
+    background-color: #575757;
+}
+
