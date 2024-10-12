@@ -1,4 +1,3 @@
-
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
@@ -18,4 +17,4 @@ class RegistroUsuario(CreateView):
 class LogoutView(View):
     def get(self, request):
         logout(request)
-        return redirect ('home')
+        return redirect ('inicio')
