@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>Formulario de Login</title>
+{% endblock %}
+
+
+
+{% block content %}
+    <h4>Inicio de Sesion</h4>
+    <form action="" method="POST">{% csrf_token %}
+        {{form.errors}}
+        <section class="form-register">
+            <!-- Creo los imput para que el usuario ingrese sus datos -->
+            <input class="controls" type="text" name="username" id="usuario" placeholder="Ingrese su Usuario">
+            <input class="controls" type="password" name="password" id="contraseñas" placeholder="Ingrese la Contraseña">
+            <!-- Mensaje de si el usuario esta de acuerdo con los terminos y conficiones -->
+            <p>Estoy de acuerdo con <a href="#">Terminos y condiciones</a></p>
+            <!-- Creamos el boton para que el usuario pueda registrarse -->
+            <input class="botons" type="submit" value="Iniciar Sesion">
+                    
+    </form>
+{% endblock content %}
+
+
+
+
