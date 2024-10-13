@@ -1,12 +1,18 @@
 from django.shortcuts import render
-
-def profile_list(request):
-    # tu lógica aquí
-    return render(request, 'usuarios/profile_list.html')  # ajusta según tu plantilla
-
-
-
-
+from django.urls import reverse_lazy
+from django.views.generic import CreateView
+from .forms import FormUsers
+from django.contrib.auth import logout
+from django.shortcuts import redirect
+from django.views import View
 
 
+class RegistroUsuario(CreateView):
+    template_name = 'usuarios/registro.html'
+    form_class = FormUsers
+    success_url = reverse_lazy('login')
 
+class LogoutView(View):
+    def get(self, request):
+        logout(request)
+        return redirect ('inicio')

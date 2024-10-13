@@ -1,97 +1,164 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Blog</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+        
+    <!-- CREO UN BLOQUE TITULO, PARA AGREGAR EL TITULO EN CADA TEMPLATE-->
+    {% block titulo %}
+    <title>Emprendemos Chaco</title>
+    {% endblock %}
+
+    <!--CREO UN BLOQUE CSS DONDE SOLO DEBEN ESTAR LOS CSS DE LA BASE, EL RESTO SE AGREGA EN CADA TEMPLATE -->
+    {% block css %}
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/base/base.css' %}">
+		<script src="https://kit.fontawesome.com/ce93252b6d.js" crossorigin="anonymous"></script>
+    {% endblock %}
 </head>
+    
 <body>
     <header>
-        <nav class="navbar">
-            <div class="nav-left">
-                <span class="brand">Emprendimiento Chaco</span>
-            </div>
-            <div class="nav-right">
-                <ul>
-                    <li><a href="{% url 'home_view' %}">Inicio</a></li>
-                    <li><a href="{% url 'profile_list' %}">Perfiles</a></li>
-                    <li class="dropdown">
-                        <a href="#">Categorías</a>
-                        <ul class="dropdown-content">
-                            <li><a href="{% url 'categoria_view' 'Pintura' %}">Pintura</a></li>
-                            <li><a href="{% url 'categoria_view' 'Musica' %}">Música</a></li>
-                            <li><a href="{% url 'categoria_view' 'Muebles' %}">Muebles</a></li>
-                            <li><a href="{% url 'categoria_view' 'Moda' %}">Moda</a></li>
-                            <li><a href="{% url 'categoria_view' 'Manualidades' %}">Manualidades</a></li>
-                            <li><a href="{% url 'categoria_view' 'Comida' %}">Comida</a></li>
-                            <li><a href="{% url 'item_list' %}">Todo</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-        <h1 class="main-title">Emprendimiento</h1>  <!-- Título principal -->
+		<div class="container-fluid d-flex justify-content-between align-items-center" style="background-color: #ecbc7c;">
+			<!-- Sección izquierda: Logo y texto -->
+			<div class="d-flex align-items-center">
+				<a class="navbar-brand text-white" href="{% url 'inicio' %}">
+					<img src="{% static 'img/base/Logo.png' %}" width="45" height="auto" class="img-responsive" alt="Responsive image">
+					<span class="mb-0 ml-2">Emprendemos Chaco</span>
+				</a>
+			</div>
+		
+			<!-- Sección derecha: Registrate e Inicia sesión -->
+			<div class="d-flex flex-column align-items-end" style="margin-right: 20px;">
+				{% if user.is_authenticated %}
+				<div>
+					<a class="btn btn-boton_personalizado mr-2 text-uppercase" >BIENVENIDO </a> <!--ACA IRIA BIENVENIDO [NOMBRE USUARIO]-->
+				</div>
+				<div>
+					<a class="btn btn-boton_personalizado mr-2"href="{% url 'usuarios:logout' %}">SALIR</a>
+				</div>
+				{% else %}
+				<a class="text-white mb-2" href="{% url 'usuarios:RegisterUsers'%}">REGISTRARSE</a>
+						
+				</a> 
+
+				<a class="text-white mb-2" style="margin-right: 15px;" href= "{% url 'usuarios:login' %}">ACCEDER</a>
+				{% endif %}
+			</div>
+		</div>
+		
     </header>
+    <!--NAVBAR-->
+	<nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #3c3024ea;">
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
 
-    <main>
-        {% block content %}{% endblock %}
-    </main>
+		<div class="collapse navbar-collapse ps-2" id="navbarSupportedContent">
+			<div class="text-center">
+				<ul class="navbar-nav">					
+					<li class="nav-item">
+						<a class="nav-link btn btn-navbar" id="dropdown-btn">Categorías</a>
+						<ul class="dropdown-content" id="dropdown-menu">
+							<li><a href="{% url 'categoria_view' 'Pintura' %}">Pintura</a></li>
+							<li><a href="{% url 'categoria_view' 'Musica' %}">Música</a></li>
+							<li><a href="{% url 'categoria_view' 'Muebles' %}">Muebles</a></li>
+							<li><a href="{% url 'categoria_view' 'Moda' %}">Moda</a></li>
+							<li><a href="{% url 'categoria_view' 'Manualidades' %}">Manualidades</a></li>
+							<li><a href="{% url 'categoria_view' 'Comida' %}">Comida</a></li>
+							<li><a href="{% url 'item_list' %}">Todo</a></li>
+						</ul>
+					</li>
+					<li class="nav-item ps-2">
+						<a class="nav-link btn btn-navbar">Acerca de nosotros</a>
+					</li>
+					<!--AGREGAR ACA SI USUARIO ES CREADOR ENTONCES QUE APAREZCA EL BOTON CREAR POST-->
+				</ul>   
+			</div>
+		</div>
+		<div class="collapse navbar-collapse d-flex justify-content-end pe-2" id="navbarSupportedContent">
+			<div class="text-center">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item">
+						<!--Cambiar luego a algo mas bonito-->
+						<a class="nav-link btn btn-navbar" href="#">Buscar Posteos</a>
+					</li>
+				</ul>      
+			</div>
+		</div>                        
+	</nav>
+	
+	<!--FIN NAVBAR-->
 
-    <footer>
-        <p>&copy; 2024 - Tu Emprendimiento. Todos los derechos reservados.</p>
+	{% block content %}
+
+	{% endblock content%}
+
+	<footer class="bg-dark text-center text-white" id='pie_pagina'>
+        <!-- Grid container -->
+        <div class="container p-4 pb-0">
+          <!-- Section: Social media -->
+          <section class="mb-4">
+      
+            <!-- Twitter -->
+            <a class="btn btn-outline-light btn-floating m-1" href="https://twitter.com/InformatorioCh" role="button"
+              ><i class="fab fa-twitter"></i
+            ></a>
+      
+            <!-- Google -->
+            <a class="btn btn-outline-light btn-floating m-1" href="https://empleo.chaco.gob.ar/rinformatorio" role="button"
+              ><i class="fab fa-google"></i
+            ></a>
+      
+            <!-- Instagram -->
+            <a class="btn btn-outline-light btn-floating m-1" href="https://www.instagram.com/informatorio/" role="button"
+              ><i class="fab fa-instagram"></i
+            ></a>
+        
+            <!-- Linkedin -->
+            <a class="btn btn-outline-light btn-floating m-1" href="https://www.linkedin.com/company/informatorio-chaco/" role="button"
+              ><i class="fab fa-linkedin-in"></i
+            ></a>
+      
+            <!-- Github -->
+            <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/mauricio3551/EmprendemosChaco" role="button"
+              ><i class="fab fa-github"></i
+            ></a>
+          </section>
+          <!-- Section: Social media -->
+        </div>
+        <!-- Grid container -->
+      
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+          CONTACTO: grupo9Com2@info.com
+          <br>
+          © 2024 Copyright: Emprendemos Chaco
+        </div>
+        <!-- Copyright -->
     </footer>
-    
+
+	{% block js %}
+	<script>
+		document.getElementById("dropdown-btn").addEventListener("click", function() {
+			var menu = document.getElementById("dropdown-menu");
+			if (menu.style.display === "block") {
+				menu.style.display = "none";
+			} else {
+				menu.style.display = "block";
+			}
+		});
+	</script>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+	{% endblock %}
+
 </body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
