@@ -4,12 +4,12 @@ body {
     background-position: center center;
     background-attachment: fixed;
     background-size: cover;
-    background-color: #464646;
+    background-color: #385d83;
 }
 
 .imagenlogo {
     background-color: #303535;
-    height: 15vh;
+    height: 15vh; 
     background-size: cover;
     background-position: center;
 }
@@ -67,14 +67,14 @@ background-color: #EF891E;
 padding: .375rem .75rem;
 border-radius: .25rem;
 background-color: #858F8F;
-color: #FFFFFF;
+color: #385d83;
 font-weight: bold;
 transition: background-color .15s ease-in-out;
 }
 
 .btn-navbar:hover, .btn-navbar:focus {
 background-color: #1C2525;
-color: #FFFFFF
+color: #385d83
 }
 
 .btn-navbar:active {
