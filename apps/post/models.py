@@ -1,17 +1,11 @@
 from django.db import models
 from django.conf import settings
 from django.core.exceptions import ValidationError
+from apps.categoria.models import Categoria
 
 def validar_extension(valor):
 	if not valor.name.endswith(settings.ALLOWED_IMG):
 		raise ValidationError("Ese formato de imagen no esta permitido.")
-
-class Categoria(models.Model):
-    id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=50)
-
-    def __str__(self):
-        return '{}'.format(self.name)
 
 class Post(models.Model):
     id = models.AutoField(primary_key=True)

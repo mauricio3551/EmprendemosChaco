@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Comida</title>
+</head>
+<body>
+    <h1>Comida</h1>
+    <p>La comida es una parte esencial de la cultura humana y se refiere a la sustancia que consumimos para alimentarnos.</p>
+    <a href="{% url 'buscar' %}">Volver a buscar</a>
+
+    <div>
+        <a href="{% url 'categoria_view' 'comida' %}" class="button">Ver Comidas</a>
+        <a href="{% url 'item_list' %}" class="button">Todo</a>
+    </div>
+</body>
+</html>
+
+
+ 
