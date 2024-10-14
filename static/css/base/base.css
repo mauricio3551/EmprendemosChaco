@@ -1,6 +1,6 @@
 body {
-    /*background-color: #232E2E;*/
-    background: url("/static/portada/image/libra60%.jpg") no-repeat;    
+    background-color: #232E2E;
+      
     background-position: center center;
     background-attachment: fixed;
     background-size: cover;

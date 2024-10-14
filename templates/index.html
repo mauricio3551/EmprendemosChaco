@@ -2,7 +2,7 @@
 {% load static %}
 {% block css %}
     {{ block.super }}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/paginaPrincipal/index.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base/base.css' %}">
 {% endblock %}
 
 {% block js %}
@@ -19,7 +19,7 @@
                 <a target="_blank"><img class="d-block w-100" src="{{ post.thumbnail.url }}"></a>
                 <div class="carousel-caption d-none d-md-block">
                     <h5>{{ post.title }}</h5>
-                    <p>{{ post.content|truncatewords:20 }}</p>
+                    <p>{{ post.content|truncatewords:5 }}...</p>
                 </div>
               </div>
               {% endfor %}
