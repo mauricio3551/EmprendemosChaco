@@ -82,13 +82,18 @@
 			</div>
 		</div>                        
 	</nav>
-	
+		<a href="{% url 'password_reset' %}">
+			<button>Recuperar Contraseña</button>
+			
+		</a>
 	<!--FIN NAVBAR-->
 	<div class="container p-4 pb-0">
+	</div>
 	{% block content %}
 
+
 	{% endblock content%}
-	</div>
+	
 	
 	<footer class="bg-dark text-center text-white" id='pie_pagina'>
         <!-- Grid container -->

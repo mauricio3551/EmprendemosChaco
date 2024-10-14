@@ -9,7 +9,7 @@ body {
 }
 .form-register{
     width: 400px;
-    background: #3c3024ea;
+    background: #961919ea;
     padding: 30px;
     margin: auto;
     margin-top: 100px;
@@ -34,7 +34,7 @@ body {
     padding: 10px;
     border-radius: 4px;
     margin-bottom: 16px;
-    border: 2px solid #354e13;
+    border: 2px solid #23134e;
     font-family: 'calibri';
     font-size: 18px;
 }
@@ -61,7 +61,7 @@ body {
 
 .form-register .botons {
     width: 100%;
-    background: #245237;
+    background: #ff0303;
     border: 2px solid #020300;
     padding: 12px;
     color: white;
