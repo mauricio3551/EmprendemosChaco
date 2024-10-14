@@ -11,15 +11,14 @@
 {% endblock %}
 
 {% block titulo %}
-  Registro
+  
 {% endblock titulo %}
 
 {% block content %}
 
-    
+<section class="form-register">
     <form action="" method="POST" enctype="multipart/form-data">{% csrf_token %}
     {{form.errors}}
-      <section class="form-register">
         <h4>Formulario de Registro</h4>
          <!-- Creo los imput para que el usuario ingrese sus datos -->
         <input class="controls" type="text" name="username" id="Usuario" placeholder="Ingrese su Usuario">
@@ -35,9 +34,8 @@
          <button class="botons" type="submit">Registrar</button>
          <!-- url que pregunta si el usuario ya tiene cuenta y lo redireccione a la pagina del Login o inicio de sesion -->
         <a href= "{% url 'usuarios:login' %}">¿Ya tienen Cuenta?</a>
-
-        
     </form>
+</section>
 
 
 {%  endblock content %}

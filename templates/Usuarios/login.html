@@ -10,10 +10,10 @@
 
 
 {% block content %}
-    <h4 class="inicio_sesion">Inicio de Sesion</h4>
+<section class="form-register">
     <form action="" method="POST">{% csrf_token %}
         {{form.errors}}
-        <section class="form-register">
+            <h4>Inicio de Sesion</h4>
             <!-- Creo los imput para que el usuario ingrese sus datos -->
             <input class="controls" type="text" name="username" id="usuario" placeholder="Ingrese su Usuario">
             <input class="controls" type="password" name="password" id="contraseñas" placeholder="Ingrese la Contraseña">
@@ -21,8 +21,8 @@
             <p>Estoy de acuerdo con <a href="#">Terminos y condiciones</a></p>
             <!-- Creamos el boton para que el usuario pueda registrarse -->
             <input class="botons" type="submit" value="Iniciar Sesion">
-                    
     </form>
+</section>
 {% endblock content %}
 
 
