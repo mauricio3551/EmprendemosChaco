@@ -20,6 +20,11 @@
             <input class="controls" type="password" name="password" id="contraseñas" placeholder="Ingrese la Contraseña">
             <!-- Mensaje de si el usuario esta de acuerdo con los terminos y conficiones -->
             <p>Estoy de acuerdo con <a href="#">Terminos y condiciones</a></p>
+            <a class="text-white mb-2 mr-2">¿Se olvido la contraseña? Puede recuperarla</a>
+            <a href="{% url 'password_reset' %}">
+                <button>AQUI</button>
+                
+            </a>
             <!-- Creamos el boton para que el usuario pueda registrarse -->
             <input class="botons" type="submit" value="Iniciar Sesion">
                     
