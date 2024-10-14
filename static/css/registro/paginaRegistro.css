@@ -7,7 +7,7 @@
 
 .form-register{
     width: 400px;
-    background: #385d83;
+    background: #dde7f1;
     padding: 30px;
     margin: auto;
     margin-top: 100px;
@@ -25,7 +25,7 @@
 
 .controls {
     width: 100%;
-    background: #385d83;
+    background: #dde7f1;
     padding: 10px;
     border-radius: 4px;
     margin-bottom: 16px;
@@ -53,7 +53,7 @@
 
 .form-register .botons {
     width: 100%;
-    background: #385d83;
+    background: #dde7f1;
     border: 2px solid #020300;
     padding: 12px;
     color: #385d83;
