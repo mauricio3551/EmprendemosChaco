@@ -3,6 +3,7 @@ from datetime import date
 from django.db.models import Q  # Importar Q para consultas más complejas
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Item
+from django.utils import timezone
 
 
 def item_list(request):
@@ -20,14 +21,19 @@ def item_list(request):
         antiguedad = form.cleaned_data.get('antiguedad')
         order = form.cleaned_data.get('order')
 
-        # Filtrar por búsqueda de nombre del ítem
+        # Depuración
+        print("Búsqueda por autor:", author)
+        print("Búsqueda por antigüedad:", antiguedad)
+
+        # Filtrar por nombre
         if search_term:
             items = items.filter(name__icontains=search_term)
 
-        # Permitir búsqueda por autor
+        # Filtrar por autor
         if author:
-            author = author.strip()  # Eliminar espacios adicionales
+            author = author.strip()
             items = items.filter(author__icontains=author)
+            print("Filtrando ítems por autor:", items)
 
         # Filtrar por categoría
         if category:
@@ -35,23 +41,23 @@ def item_list(request):
 
         # Filtrar por antigüedad
         if antiguedad:
-            fecha_limite = date.today().year - antiguedad
-            items = items.filter(creation_date__year__lte=fecha_limite)
+            year_limit = timezone.now().year - antiguedad
+            items = items.filter(creation_date__year__lte=year_limit)
+            print("Filtrando ítems por antigüedad:", items)
 
         # Ordenar
         if order:
             items = items.order_by(order)
 
-        print("Ítems después de aplicar filtros:", items)  # Imprime los ítems después de aplicar filtros
+        print("Ítems después de aplicar filtros:", items)
 
     return render(request, 'busqueda/item_list.html', {'form': form, 'items': items})
 
 
 
-
-
 def home_view(request):
     return render(request, 'home.html')
+
 
 def search_results(request):
     form = SearchForm(request.GET)
@@ -61,8 +67,10 @@ def search_results(request):
         search_term = form.cleaned_data.get('search')
         category = form.cleaned_data.get('category')
         author = form.cleaned_data.get('author')
+        antiguedad = form.cleaned_data.get('antiguedad')
+        order = form.cleaned_data.get('order')
 
-        # Filtrar por el nombre del ítem si hay un término de búsqueda
+        # Filtrar por nombre del ítem si hay término de búsqueda
         if search_term:
             items = Item.objects.filter(name__icontains=search_term)
 
@@ -76,11 +84,17 @@ def search_results(request):
             print(f'Buscando autor: {author}')
             print(f'Ítems encontrados por autor: {items}')
 
+        # Filtrar por antigüedad
+        if antiguedad:
+            year_limit = timezone.now().year - antiguedad
+            items = items.filter(creation_date__year__lte=year_limit)
+            print(f'Buscando antigüedad: {antiguedad}')
+            print(f'Ítems encontrados por antigüedad: {items}')
+
         # Imprime el QuerySet en la consola
-        print(f'Search Results: {[item.name for item in items]}')  # Muestra solo los nombres de los ítems encontrados
+        print(f'Search Results: {[item.name for item in items]}')
 
         # Ordenar si se especifica
-        order = form.cleaned_data.get('order')
         if order:
             items = items.order_by(order)
 
