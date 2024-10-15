@@ -5,4 +5,5 @@ app_name = "post"
 
 urlpatterns = [
     path('post/crear', PostCrearView.as_view(), name='crearPost'),
+    path('post/<int:pk>', PostMostrarView.as_view(), name='mostrarPost'),
 ]

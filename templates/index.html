@@ -16,7 +16,7 @@
             <div class="carousel-inner rounded">
               {% for post in recentPosts %}  
               <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                <a target="_blank"><img class="d-block w-100" src="{{ post.thumbnail.url }}"></a>
+                <a href="{% url 'post:mostrarPost' post.pk %}" target="_blank"><img class="d-block w-100" src="{{ post.thumbnail.url }}"></a>
                 <div class="carousel-caption d-none d-md-block">
                     <h5>{{ post.title }}</h5>
                     <p>{{ post.content|truncatewords:5 }}...</p>
@@ -32,7 +32,7 @@
               <span class="carousel-control-next-icon" aria-hidden="true"></span>
               <span class="visually-hidden">Next</span>
             </button>
-          </div>
+        </div>
         <!-- FIN CARROUSEL -->
 
         <!-- INICIO POST MAS VIEJOS -->

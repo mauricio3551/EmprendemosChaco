@@ -11,6 +11,6 @@ def Login(request):
     return render(request, '')
 
 class CustomPasswordResetView(PasswordResetView):
-    template_name = 'password_reset.html'
-    email_template_name = 'password_reset_email.html'
+    template_name = 'Usuarios/password_reset.html'
+    email_template_name = 'Usuarios/password_reset_email.html'
     success_url = reverse_lazy('password_reset_done')
