@@ -23,8 +23,8 @@
     
 <body>
     <header>
-		<div class="container-fluid d-flex justify-content-between align-items-center" style="background-color: #ecbc7c;">
-			<!-- Sección izquierda: Logo y texto -->
+		<div class="container-fluid d-flex justify-content-between align-items-center" style="background-color: #385d83">
+			<!-- Sección izquierda: Logo y texto #385d83-->
 			<div class="d-flex align-items-center">
 				<a class="navbar-brand text-white" href="{% url 'inicio' %}">
 					<img src="{% static 'img/base/Logo.png' %}" width="45" height="auto" class="img-responsive" alt="Responsive image">
@@ -36,10 +36,17 @@
 			<div class="d-flex flex-column align-items-end" style="margin-right: 20px;">
 				{% if user.is_authenticated %}
 				<div>
+<<<<<<< HEAD
+					<a class="btn-boton_personalizado" role="button" >BIENVENIDO </a> <!--ACA IRIA BIENVENIDO [NOMBRE USUARIO]-->
+				</div>
+				<div>
+					<a class="btn-boton_personalizado" role="button" href="{% url 'usuarios:logout' %}">SALIR</a>
+=======
 					<a class="text-white mb-2 mr-2 text-uppercase" >BIENVENIDO {{user.username | upper }} </a> <!--ACA IRIA BIENVENIDO [NOMBRE USUARIO]-->
 				</div>
 				<div>
 					<a class="text-white mb-2 mr-2 text-uppercase" href="{% url 'usuarios:logout' %}">SALIR</a>
+>>>>>>> b9befb3cf7a65eaef4f2c052559f092f29485d18
 				</div>
 				{% else %}
 				<a class="text-white mb-2" href="{% url 'usuarios:RegisterUsers'%}">REGISTRARSE</a>
@@ -52,8 +59,8 @@
 		</div>
 		
     </header>
-    <!--NAVBAR-->
-	<nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #3c3024ea;">
+    <!--NAVBAR #3c3024ea o #077056ea-->
+	<nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #077056ea;">
 		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
