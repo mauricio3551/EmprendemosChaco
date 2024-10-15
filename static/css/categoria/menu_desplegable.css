@@ -1,0 +1,31 @@
+/* Asegura que el menú desplegable esté oculto por defecto */
+ul.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: black; /* Fondo negro para los enlaces */
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Cuando el usuario pase el cursor sobre Categorías */
+li.dropdown:hover ul.dropdown-content {
+    display: block;
+}
+
+/* Estilos para los enlaces en el menú desplegable */
+ul.dropdown-content li {
+    display: block;
+}
+
+ul.dropdown-content li a {
+    color: white;
+    text-decoration: none;
+    padding: 12px 16px;
+    display: block;
+}
+
+/* Color de fondo cuando se pasa sobre una categoría */
+ul.dropdown-content li a:hover {
+    background-color: #575757;
+}

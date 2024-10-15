@@ -20,18 +20,20 @@ def item_list(request):
         antiguedad = form.cleaned_data.get('antiguedad')
         order = form.cleaned_data.get('order')
 
-        # Filtrar por búsqueda
+        # Filtrar por búsqueda de nombre del ítem
         if search_term:
             items = items.filter(name__icontains=search_term)
 
+        # Permitir búsqueda por autor
+        if author:
+            author = author.strip()  # Eliminar espacios adicionales
+            items = items.filter(author__icontains=author)
+
+        # Filtrar por categoría
         if category:
             items = items.filter(category=category)
 
-        # Filtrar por autor utilizando Q para permitir búsquedas más complejas
-        if author:
-            author = author.strip()  # Eliminar espacios adicionales
-            items = items.filter(Q(author__icontains=author))
-
+        # Filtrar por antigüedad
         if antiguedad:
             fecha_limite = date.today().year - antiguedad
             items = items.filter(creation_date__year__lte=fecha_limite)
@@ -42,7 +44,9 @@ def item_list(request):
 
         print("Ítems después de aplicar filtros:", items)  # Imprime los ítems después de aplicar filtros
 
-    return render(request, 'item_list.html', {'form': form, 'items': items})
+    return render(request, 'busqueda/item_list.html', {'form': form, 'items': items})
+
+
 
 
 
@@ -80,17 +84,17 @@ def search_results(request):
         if order:
             items = items.order_by(order)
 
-    return render(request, 'search_results.html', {'form': form, 'items': items})
+    return render(request, 'busqueda/search_results.html', {'form': form, 'items': items})
 
 
 def detalle_item_view(request, item_id):
     item = get_object_or_404(Item, id=item_id)
-    return render(request, 'detalle_item.html', {'item': item})
+    return render(request, 'busqueda/detalle_item.html', {'item': item})
 
 # Nueva vista para manejar la categoría
 def categoria_view(request, categoria):
     items = Item.objects.filter(category__iexact=categoria)  # Uso de iexact para evitar problemas de mayúsculas/minúsculas
-    return render(request, 'categoria.html', {'items': items, 'categoria': categoria})
+    return render(request, 'busqueda/categoria.html', {'items': items, 'categoria': categoria})
 
 
 def item_form_view(request, item_id=None):
@@ -104,5 +108,5 @@ def item_form_view(request, item_id=None):
         form.save()
         return redirect('item_list')  # Redirigir a la lista de ítems después de guardar
 
-    return render(request, 'item_form.html', {'form': form})  # Asegúrate de tener un template item_form.html
+    return render(request, 'busqueda/item_form.html', {'form': form})  # Asegúrate de tener un template item_form.html
 
