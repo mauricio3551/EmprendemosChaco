@@ -20,20 +20,17 @@ from django.conf.urls.static import static
 from django.conf import settings
 from . import views
 from django.contrib.auth import views as auth
-from .views import CustomPasswordResetView
-from django.contrib.auth.views import PasswordResetDoneView
+
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.Inicio, name='inicio'),
     path('logout' , auth.LogoutView.as_view(next_page='inicio') , name='logout'),
-
     path('usuarios/', include('apps.usuarios.urls')),
     path('', include('apps.post.urls')),
+    path('', include('django.contrib.auth.urls'))
     
-    path('password_reset/', CustomPasswordResetView.as_view(), name='password_reset'),
-    path('password_reset/done/', PasswordResetDoneView.as_view(), name='password_reset_done'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
