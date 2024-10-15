@@ -1,10 +1,8 @@
 body {
-    background-color: #232E2E;
-      
+    background-image: linear-gradient(to left bottom, #dde7f1, #aec2ce, #7f9fa9, #517d83, #255c5c);
     background-position: center center;
     background-attachment: fixed;
     background-size: cover;
-    background-color: #dde7f1;
 }
 
 .imagenlogo {
@@ -110,4 +108,3 @@ background-color: #EF891E;
     padding: 0;
     margin: 0;
 }
-

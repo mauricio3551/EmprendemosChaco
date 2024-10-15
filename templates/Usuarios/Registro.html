@@ -11,13 +11,10 @@
     {{ block.super }}
 {% endblock %}
 
-<<<<<<< HEAD
 {% block titulo %}
   
 {% endblock titulo %}
 
-=======
->>>>>>> b9befb3cf7a65eaef4f2c052559f092f29485d18
 {% block content %}
 
 <section class="form-register">
@@ -25,16 +22,7 @@
     {{form.errors}}
         <h4>Formulario de Registro</h4>
          <!-- Creo los imput para que el usuario ingrese sus datos -->
-<<<<<<< HEAD
-        <input class="controls" type="text" name="username" id="Usuario" placeholder="Ingrese su Usuario">
-        <input class="controls" type="text" name="first_name" id="nombre" placeholder="Ingrese su Nombre/s">
-        <input class="controls" type="text" name="last_name" id="Apellido" placeholder="Ingrese su Apellido">
-        <input class="controls" type="email" name="email" id="email" placeholder="Ingrese su Email">
-        <input class="controls" type="password" name="password1" id="contraseñas" placeholder="Ingrese su Contraseña">
-        <input class="controls" type="password" name="password2" id="contraseñas" placeholder="Confirme su Contraseña"> 
-=======
          {{ form | crispy }}
->>>>>>> b9befb3cf7a65eaef4f2c052559f092f29485d18
         <!-- Mensaje de si el usuario esta de acuerdo con los terminos y conficiones -->
 
         <p>Estoy de acuerdo con <a href="#">Terminos y condiciones</a></p>
