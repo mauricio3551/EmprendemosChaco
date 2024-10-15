@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Pintura</title>
+</head>
+<body>
+    <h1>Pintura</h1>
+    <p>La pintura es una forma de expresión artística que utiliza pigmentos aplicados sobre una superficie para crear imágenes y transmitir emociones.</p>
+    <a href="{% url 'buscar' %}">Volver a buscar</a>
+
+    <div>
+        <a href="{% url 'categoria_view' 'pintura' %}" class="button">Ver Pinturas</a>
+        <a href="{% url 'item_list' %}" class="button">Todo</a>
+    </div>
+</body>
+</html>
+
+
+
