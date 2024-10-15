@@ -17,13 +17,14 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 		<link rel="stylesheet" type="text/css" href="{% static 'css/base/base.css' %}">
 		<script src="https://kit.fontawesome.com/ce93252b6d.js" crossorigin="anonymous"></script>
+		
     {% endblock %}
 </head>
     
 <body>
     <header>
-		<div class="container-fluid d-flex justify-content-between align-items-center" style="background-color: #ecbc7c;">
-			<!-- Sección izquierda: Logo y texto -->
+		<div class="container-fluid d-flex justify-content-between align-items-center" style="background-color: #385d83">
+			<!-- Sección izquierda: Logo y texto #385d83-->
 			<div class="d-flex align-items-center">
 				<a class="navbar-brand text-white" href="{% url 'inicio' %}">
 					<img src="{% static 'img/base/Logo.png' %}" width="45" height="auto" class="img-responsive" alt="Responsive image">
@@ -35,10 +36,10 @@
 			<div class="d-flex flex-column align-items-end" style="margin-right: 20px;">
 				{% if user.is_authenticated %}
 				<div>
-					<a class="btn btn-boton_personalizado mr-2 text-uppercase" >BIENVENIDO </a> <!--ACA IRIA BIENVENIDO [NOMBRE USUARIO]-->
+					<a class="text-white mb-2 mr-2 text-uppercase" >BIENVENIDO {{user.username | upper }} </a> <!--ACA IRIA BIENVENIDO [NOMBRE USUARIO]-->
 				</div>
 				<div>
-					<a class="btn btn-boton_personalizado mr-2"href="{% url 'usuarios:logout' %}">SALIR</a>
+					<a class="text-white mb-2 mr-2 text-uppercase" href="{% url 'usuarios:logout' %}">SALIR</a>
 				</div>
 				{% else %}
 				<a class="text-white mb-2" href="{% url 'usuarios:RegisterUsers'%}">REGISTRARSE</a>
@@ -51,8 +52,8 @@
 		</div>
 		
     </header>
-    <!--NAVBAR-->
-	<nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #3c3024ea;">
+    <!--NAVBAR #3c3024ea o #077056ea-->
+	<nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #077056ea;">
 		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
@@ -63,43 +64,56 @@
 					<li class="nav-item">
 						<a class="nav-link btn btn-navbar" id="dropdown-btn">Categorías</a>
 						<ul class="dropdown-content" id="dropdown-menu">
-							<li><a href="{% url 'categoria_view' 'Pintura' %}">Pintura</a></li>
-							<li><a href="{% url 'categoria_view' 'Musica' %}">Música</a></li>
-							<li><a href="{% url 'categoria_view' 'Muebles' %}">Muebles</a></li>
-							<li><a href="{% url 'categoria_view' 'Moda' %}">Moda</a></li>
-							<li><a href="{% url 'categoria_view' 'Manualidades' %}">Manualidades</a></li>
-							<li><a href="{% url 'categoria_view' 'Comida' %}">Comida</a></li>
-							<li><a href="{% url 'item_list' %}">Todo</a></li>
+							<li><a href="#">Pintura</a></li>
+							<li><a href="#">Música</a></li>
+							<li><a href="#">Muebles</a></li>
+							<li><a href="#">Moda</a></li>
+							<li><a href="#">Manualidades</a></li>
+							<li><a href="#">Comida</a></li>
+							<li><a href="#">Todo</a></li>
 						</ul>
 					</li>
 					<li class="nav-item ps-2">
 						<a class="nav-link btn btn-navbar">Acerca de nosotros</a>
 					</li>
-					<!--AGREGAR ACA SI USUARIO ES CREADOR ENTONCES QUE APAREZCA EL BOTON CREAR POST-->
+					{% if user.es_superuser or user.is_superuser %}
+					<li class="nav-item ps-2"></li>
+						<a class="nav-link btn btn-navbar" href="/admin/">Permisos</a>
+					</li>
+					<li class="nav-item ps-2"></li>
+						<a class="nav-link btn btn-navbar" href="{% url 'categoria:crearCategoria' %}">Categorias</a>
+					</li>
+					{% endif %}
 				</ul>   
 			</div>
 		</div>
 		<div class="collapse navbar-collapse d-flex justify-content-end pe-2" id="navbarSupportedContent">
 			<div class="text-center">
-				<ul class="navbar-nav ml-auto">
+				<ul class="navbar-nav ml-auto d-flex" style="gap: 10px;">
+					{% if user.es_colaborador or user.is_superuser %}
 					<li class="nav-item">
-						<!--Cambiar luego a algo mas bonito-->
+						<a class="nav-link btn btn-navbar" href="{% url 'post:crearPost' %}">Crear Posteo</a>
+					</li>
+					{% endif %}
+					<li class="nav-item">
 						<a class="nav-link btn btn-navbar" href="#">Buscar Posteos</a>
 					</li>
 				</ul>      
 			</div>
 		</div>                        
 	</nav>
-	
 	<!--FIN NAVBAR-->
-
+	<div class="container p-4 pb-0">
+	</div>
 	{% block content %}
 
-	{% endblock content%}
 
+	{% endblock content%}
+	
+	
 	<footer class="bg-dark text-center text-white" id='pie_pagina'>
         <!-- Grid container -->
-        <div class="container p-4 pb-0">
+        
           <!-- Section: Social media -->
           <section class="mb-4">
       
@@ -129,7 +143,7 @@
             ></a>
           </section>
           <!-- Section: Social media -->
-        </div>
+        
         <!-- Grid container -->
       
         <!-- Copyright -->
@@ -140,18 +154,10 @@
         </div>
         <!-- Copyright -->
     </footer>
+	
 
 	{% block js %}
-	<script>
-		document.getElementById("dropdown-btn").addEventListener("click", function() {
-			var menu = document.getElementById("dropdown-menu");
-			if (menu.style.display === "block") {
-				menu.style.display = "none";
-			} else {
-				menu.style.display = "block";
-			}
-		});
-	</script>
+	<script src="{% static 'js/base/base.js' %}"></script>
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 

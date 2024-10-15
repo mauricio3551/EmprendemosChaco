@@ -11,11 +11,20 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 import os
 from pathlib import Path
+from django.urls import reverse_lazy
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Application definition
+AUTH_USER_MODEL = 'usuarios.NewUser'
+LOGIN_REDIRECT_URL = reverse_lazy('inicio')
+LOGOUT_REDIRECT_URL = reverse_lazy('inicio')
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
+
+#LOGIN_URL = reverse_lazy('login')
+
+ALLOWED_IMG = ('.jpg', '.jpeg', '.bmp', '.png')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -27,6 +36,8 @@ INSTALLED_APPS = [
     'apps.usuarios',
     'apps.categoria',
     'apps.post',
+    'crispy_forms',
+    'crispy_bootstrap5',
 ]
 
 MIDDLEWARE = [
@@ -77,6 +88,18 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Configuración de la autenticación
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+# Configuración del correo electrónico
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'emprendemoschacoresistencia@gmail.com'
+EMAIL_HOST_PASSWORD = 'xcmo kcmp ptse auhy'
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
@@ -90,6 +113,8 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+
 
 
 # Static files (CSS, JavaScript, Images)
