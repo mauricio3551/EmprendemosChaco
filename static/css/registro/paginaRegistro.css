@@ -7,7 +7,7 @@
 
 .form-register{
     width: 400px;
-    background: #706f6f;
+    background-image: linear-gradient(to bottom, #37404d, #0e5868, #007061, #4a823b, #a08610);
     padding: 30px;
     margin: auto;
     margin-top: 30px;
