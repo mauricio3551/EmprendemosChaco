@@ -5,7 +5,8 @@ from django.urls import reverse_lazy
 
 def Inicio(request):
     recentPosts = Post.objects.order_by('-publish_date')[:3]
-    return render(request, 'index.html', {'recentPosts': recentPosts})
+    olderPost = Post.objects.order_by('-publish_date')[3:7]
+    return render(request, 'index.html', {'recentPosts': recentPosts, 'olderPost':olderPost})
 
 def Login(request):
     return render(request, '')
