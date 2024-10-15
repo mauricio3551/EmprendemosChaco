@@ -8,6 +8,10 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/post/postForm.css' %}">
 {% endblock %}
 
+{% block js %}
+    {{ block.super }}
+{% endblock %}
+
 {% block content %}
 <div class="row rounded">
     <div class="col-12 item mb-5" id="container-form">

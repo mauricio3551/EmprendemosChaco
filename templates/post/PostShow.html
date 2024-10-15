@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/post/postShow.css' %}">
+{% endblock %}
+
+{% block js %}
+    {{ block.super }}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="container d-flex mt-3 mb-2 justify-content-center" id="post_contenido">
+            <h2 class="card-header" style="color: #FFFFFF">{{ object.title }}</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="container col-9 mb-4" id="post_contenido">
+            <div class="container mb-3 mt-3 d-flex justify-content-end">
+                <p><b>Post creado por {{ object.user.username }} - {{ object.publish_date }}</b></p>
+            </div>
+            <div class="mt-1 mb-2">
+                <div class="d-flex justify-content-center pt-4 pb-4">
+                    {% if object.thumbnail %}
+                        <img class="img-thumbnail" src="{{ object.thumbnail.url }}" alt="">
+                    {% endif %}
+                </div>
+                <p>{{ object.content|safe }}</p>
+            </div>
+            <div class="mt-5 mb-3">
+                <div class="row">
+                    {% if not user.is_authenticated %}
+                        <div class="alert alert-primary">¿Te gustó lo que viste? Inicia sesión y comenta</div>
+                    {% endif %}
+                    <!--{% if user.is_authenticated %}
+                        <div class="col d-flex justify-content-center">     
+                            <a class="btn btn-outline-info" href="#">Comentar</a>                           
+                        </div>
+                    {% endif %}-->
+                </div>
+            </div>
+        </div>
+        <!-- ACA VAN LAS OPCIONES PARA MODIFICAR O ELIMINAR POST
+        <div class="container col-3 mb-4 justify-content-center" id="post_contenido">
+            <div class="row">
+                {% if user.id == post.user.id %}
+                    <form class="col-5 justify-content-center mt-3" method="post" action="#">
+                        {% csrf_token %}
+                        <button type="submit" value="Comfirm" class="me-4 btn btn-outline-danger">
+                            <b>ELIMINAR</b>
+                        </button>
+                    </form>
+                    <div class="col-5 justify-content-center mt-3" >
+                        <a href="#" type="submit" value="Comfirm" class="btn btn-outline-warning">
+                            <b>Editar</b>
+                        </a>
+                    </div>
+            
+                {% elif user.is_superuser %}
+                    <form class="ms-1 me-1" method="post" action="#">
+                        {% csrf_token %}
+                        <button type="submit" value="Comfirm" class="btn btn-outline-danger btn-sm">
+                            <b>ELIMINAR</b>
+                        </button>
+                    </form>
+                {% endif %}-->
+                <!--<div>
+                    {% if object.user.image %}
+                        <img class="img-thumbnail rounded mt-4" src="{{ object.user.image.url }}"></img>
+                    {% else %}
+                        <img class="img-thumbnail rounded mt-4" src="{% static 'usuario/imagen/Avatar.jpg' %}"></img>
+                    {% endif %}
+        
+                    <div class="d-flex justify-content-center mt-4">
+                        <h4>{{ object.user.username }}</h4>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+    </div>
+</div>
+<!--<div class="container">
+    <div class="row mb-5" id="ComentariosContenido">
+        <div class="mt-3 mb-3">
+            <h4 id="tituloComentarios">COMENTARIOS:</h4>
+        </div>
+        {% if object.commentsPost.all %}
+            {% for p in object.commentsPost.all %}
+                <div class="col-12 mb-2">
+                    <small><strong>{{ p.user.username }} - {{ p.timestamp }}</strong></small>
+                    <br/>
+                    {{ p.content|linebreaks }}
+                    <hr/>
+                </div>
+            {% endfor %}    
+        {% else %}
+           {% if user.is_authenticated %}      
+                <div class="alert alert-danger">No hay comentarios aún, ¡sé el primero en comentar!</div> 
+            {% else %}
+                <div class="alert alert-danger">Para ver y poder comentar, tienes que Iniciar Sesión!</div> 
+            {% endif %}          
+        {% endif %}
+    </div>
+</div>-->
+{% endblock %}
