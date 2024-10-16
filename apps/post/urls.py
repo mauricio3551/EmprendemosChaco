@@ -17,5 +17,8 @@ urlpatterns = [
     path('post/listar/comentario', postComentarios, name='listarComentarios'),
 
     #categoria
-    path('post/categoria/<int:category_id>', PostByCategoryView.as_view(), name='postByCategory')
+    path('post/categoria/<int:category_id>', PostByCategoryView.as_view(), name='postByCategory'),
+
+    #buscador
+    path('busqueda', postSearchView, name = 'busqueda'),
 ]
