@@ -12,13 +12,8 @@ body {
     background: linear-gradient(to bottom, #37404d, #0e5868, #007061, #4a823b, #a08610);
     padding: 30px;
     margin: auto;
-<<<<<<< HEAD
-    margin-top: 30px;
-    margin-bottom: 30px;
-=======
     margin-top: 100px;
     margin-bottom: 100px;
->>>>>>> b9befb3cf7a65eaef4f2c052559f092f29485d18
     border-radius: 4px;
     font-family: 'calibri';
     color: white;
@@ -36,11 +31,7 @@ body {
 
 .controls {
     width: 100%;
-<<<<<<< HEAD
-    background: #dde7f1;
-=======
-    background: #002349;
->>>>>>> b9befb3cf7a65eaef4f2c052559f092f29485d18
+    background: #ffffff;
     padding: 10px;
     border-radius: 4px;
     margin-bottom: 16px;
@@ -79,7 +70,6 @@ body {
     font-size: 16px;
 }
 
-<<<<<<< HEAD
 .botons {
     display: flex;
     justify-content: center;
@@ -91,5 +81,3 @@ body {
     border-radius: 4px;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
-=======
->>>>>>> b9befb3cf7a65eaef4f2c052559f092f29485d18
