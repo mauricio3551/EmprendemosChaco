@@ -8,6 +8,9 @@ def Inicio(request):
 def Login(request):
     return render(request, '')
 
+def about(request):
+    return render(request, 'about.html')
+
 
 class CustomPasswordResetView(PasswordResetView):
     template_name = 'password_reset.html'
