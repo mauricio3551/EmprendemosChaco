@@ -2,27 +2,29 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>{{ item.name }}</title>
-    {% load static %}  <!-- Asegúrate de que esta línea esté aquí -->
+    <title>{{ item.title }}</title>
+    {% load static %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-    <h1>{{ item.name }}</h1>
+    <h1>{{ item.title }}</h1>
     
-    {% if item.image %}  <!-- Si tienes una imagen -->
-        <img src="{{ item.image.url }}" alt="{{ item.name }}" style="max-width: 300px; max-height: 300px;">
+    {% if item.thumbnail %}  <!-- Cambié item.image a item.thumbnail -->
+        <img src="{{ item.thumbnail.url }}" alt="{{ item.title }}" style="max-width: 300px; max-height: 300px;">
     {% endif %}
 
-    <p><strong>Descripción:</strong> {{ item.description }}</p>
-    <p><strong>Categoría:</strong> {{ item.category }}</p>
-    <p><strong>Autor:</strong> {{ item.author }}</p>
-    <p><strong>Fecha de Creación:</strong> {{ item.creation_date }}</p>
+    <p><strong>Descripción:</strong> {{ item.content }}</p>  <!-- Cambié item.description a item.content -->
+    <p><strong>Categoría:</strong> <a href="{% url 'categoria:posts_por_categoria' item.category.id %}">{{ item.category }}</a></p>  <!-- Enlace a la categoría -->
+    <p><strong>Autor:</strong> {{ item.user.username }}</p>  <!-- Cambié item.author a item.user.username -->
+    <p><strong>Fecha de Creación:</strong> {{ item.publish_date }}</p>  <!-- Cambié item.creation_date a item.publish_date -->
 
-    <a href="{% url 'search_results' %}">Volver a buscar</a>
+    <a href="{% url 'post:buscar_resultados' %}">Volver a buscar</a>  <!-- Cambié el nombre de la URL -->
     <br>
-    <a href="{% url 'item_list' %}">Volver a la lista de items</a>
+    <a href="{% url 'post:post_list' %}">Volver a la lista de items</a>  <!-- Cambié el nombre de la URL -->
 </body>
 </html>
+
+
 
 
 

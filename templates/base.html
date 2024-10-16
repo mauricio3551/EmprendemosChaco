@@ -64,14 +64,14 @@
 					<li class="nav-item">
 						<a class="nav-link btn btn-navbar" id="dropdown-btn">Categorías</a>
 						<ul class="dropdown-content" id="dropdown-menu">
-							<li><a href="#">Pintura</a></li>
-							<li><a href="#">Música</a></li>
-							<li><a href="#">Muebles</a></li>
-							<li><a href="#">Moda</a></li>
-							<li><a href="#">Manualidades</a></li>
-							<li><a href="#">Comida</a></li>
-							<li><a href="#">Todo</a></li>
-						</ul>
+							<li><a href="{% url 'categoria:posts_por_categoria' categoria_id=1 %}">Pintura</a></li>
+							<li><a href="{% url 'categoria:posts_por_categoria' categoria_id=2 %}">Música</a></li>
+							<li><a href="{% url 'categoria:posts_por_categoria' categoria_id=3 %}">Muebles</a></li>
+							<li><a href="{% url 'categoria:posts_por_categoria' categoria_id=4 %}">Moda</a></li>
+							<li><a href="{% url 'categoria:posts_por_categoria' categoria_id=5 %}">Manualidades</a></li>
+							<li><a href="{% url 'categoria:posts_por_categoria' categoria_id=6 %}">Comida</a></li>
+							<li><a href="{% url 'categoria:posts_por_categoria' categoria_id=0 %}">Todo</a></li> <!-- O una vista que muestre todos los posts -->
+						</ul>						
 					</li>
 					<li class="nav-item ps-2">
 						<a class="nav-link btn btn-navbar">Acerca de nosotros</a>

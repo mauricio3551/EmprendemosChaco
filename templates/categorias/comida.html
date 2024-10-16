@@ -1,20 +1,27 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Comida</title>
-</head>
-<body>
-    <h1>Comida</h1>
-    <p>La comida es una parte esencial de la cultura humana y se refiere a la sustancia que consumimos para alimentarnos.</p>
-    <a href="{% url 'buscar' %}">Volver a buscar</a>
+{% extends 'base.html' %}
 
-    <div>
-        <a href="{% url 'categoria_view' 'comida' %}" class="button">Ver Comidas</a>
-        <a href="{% url 'item_list' %}" class="button">Todo</a>
-    </div>
-</body>
-</html>
+{% block title %}Comida{% endblock %}
+
+{% block content %}
+    <h1>Comida</h1>
+    <p>
+        La comida es una forma de arte culinario que combina ingredientes para crear platos deliciosos.
+    </p>
+
+    <ul>
+        {% for item in items %}
+            <li>
+                <a href="{% url 'post:mostrarPost' item.id %}">{{ item.title }}</a> - {{ item.content }}
+            </li>
+        {% empty %}
+            <li>No hay ítems en esta categoría.</li>
+        {% endfor %}
+    </ul>
+    
+    <a href="{% url 'post:post_list' %}">Volver a la lista de ítems</a>
+{% endblock %}
+
+
 
 
  

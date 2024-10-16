@@ -1,15 +1,16 @@
 {% extends 'base.html' %}
 
-{% block title %}Agregar/Editar Ítem{% endblock %}
-
 {% block content %}
-<h1>{% if item %}Editar Ítem{% else %}Agregar Ítem{% endif %}</h1>
-
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Enviar</button>
-</form>
-
-<a href="{% url 'item_list' %}">Volver a la lista de ítems</a>
+    <h1>Posts en la categoría {{ categoria.name }}</h1>
+    <ul>
+        {% for post in posts %}
+            <li>
+                <a href="{% url 'post_mostrar' post.id %}">{{ post.title }}</a>
+            </li>
+        {% empty %}
+            <li>No hay posts en esta categoría.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'post_list' %}">Ver todos los posts</a>
 {% endblock %}
+
