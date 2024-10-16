@@ -7,7 +7,9 @@ from django.shortcuts import render
 from django.conf import settings
 from django.http.response import HttpResponseRedirect
 from django.urls import reverse
-from django.db.models import Count
+from django.db.models import Count, Q
+from apps.categoria.models import Categoria
+from apps.usuarios.models import NewUser
 
 
 class PostCrearView(LoginRequiredMixin, CreateView):
@@ -71,6 +73,8 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
     model = Post
     success_url = reverse_lazy('inicio')
 
+#--------------------COMENTARIOS-----------------------
+
 class PostComentarioView(LoginRequiredMixin, CreateView):
     model = Comment
     form_class = CommentForm
@@ -92,6 +96,8 @@ def postComentarios(request):
 
     return render(request,'post/postList.html', {'posts':posts})
 
+#--------------------CATEGORIA-----------------------
+
 class PostByCategoryView(ListView):
     model = Post
     template_name = 'categorias/categoriaFilter.html'
@@ -100,3 +106,21 @@ class PostByCategoryView(ListView):
     def get_queryset(self):
         category_id = self.kwargs['category_id']
         return Post.objects.filter(category_id=category_id)
+
+#--------------------BUSCADOR-----------------------
+
+def search(request):
+    return render(request, 'search.html')
+
+def postSearchView(request):
+    queryset = request.GET.get("buscar")
+
+    resultado = {}
+    categorias = Categoria.objects.all()
+    resultado['categorias'] = categorias
+
+    if queryset:
+        user = NewUser.objects.filter(username = queryset)
+        resultado['posts'] = Post.objects.filter(Q(title__icontains = queryset) | Q(user__in = user)).distinct()
+
+    return render(request, 'busqueda/search.html', resultado)
