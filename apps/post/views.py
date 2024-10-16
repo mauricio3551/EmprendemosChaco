@@ -1,6 +1,6 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import CreateView, DetailView
-from apps.post.forms import PostForm, CommentForm
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.views.generic import CreateView, DetailView, UpdateView, DeleteView, ListView
+from apps.post.forms import PostForm, CommentForm, EditPostForm
 from .models  import Post, Comment
 from django.urls.base import reverse_lazy
 from django.shortcuts import render
@@ -31,6 +31,45 @@ class PostMostrarView(DetailView):
     def getContextData(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
+
+class PostListView(ListView):
+    model = Post
+    ordering = ['-publish_date']
+    template_name = 'post/postList.html'
+    context_object_name = 'posts'
+
+class PostEditarView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Post
+    form_class = EditPostForm
+    template_name = 'post/postEdit.html'
+    success_url = reverse_lazy('inicio')
+    login_url = settings.LOGIN_URL
+
+    def get_success_url(self):
+        return reverse('post:mostrarPost', kwargs={'pk': self.object.pk})
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+
+        post = self.get_object()
+
+        if not self.request.FILES.get('thumbnail'):
+            form.instance.thumbnail = post.thumbnail
+
+        else:
+            if form.instance.thumbnail.name:
+                ext = form.instance.thumbnail.name.split(".")[-1]
+                form.instance.thumbnail.name = form.instance.title + '.' + ext
+
+        return super().form_valid(form)
+
+    def test_func(self):
+        post = self.get_object()
+        return self.request.user == post.user or self.request.user.is_superuser
+
+class PostDeleteView(LoginRequiredMixin, DeleteView):
+    model = Post
+    success_url = reverse_lazy('inicio')
 
 class PostComentarioView(LoginRequiredMixin, CreateView):
     model = Comment
