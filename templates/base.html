@@ -64,13 +64,11 @@
 					<li class="nav-item">
 						<a class="nav-link btn btn-navbar" id="dropdown-btn">Categorías</a>
 						<ul class="dropdown-content" id="dropdown-menu">
-							<li><a href="#">Pintura</a></li>
-							<li><a href="#">Música</a></li>
-							<li><a href="#">Muebles</a></li>
-							<li><a href="#">Moda</a></li>
-							<li><a href="#">Manualidades</a></li>
-							<li><a href="#">Comida</a></li>
-							<li><a href="#">Todo</a></li>
+							{% for categoria in categorias %}
+								<li><a href="{% url 'post:postByCategory' categoria.id %}">{{ categoria.name }}</a></li>
+							{% empty %}
+								<li>No hay categorías disponibles</li>
+							{% endfor %}
 						</ul>
 					</li>
 					<li class="nav-item ps-2">
@@ -79,9 +77,6 @@
 					{% if user.es_superuser or user.is_superuser %}
 					<li class="nav-item ps-2"></li>
 						<a class="nav-link btn btn-navbar" href="/admin/">Permisos</a>
-					</li>
-					<li class="nav-item ps-2"></li>
-						<a class="nav-link btn btn-navbar" href="{% url 'categoria:crearCategoria' %}">Categorias</a>
 					</li>
 					{% endif %}
 				</ul>   

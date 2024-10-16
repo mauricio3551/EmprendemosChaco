@@ -91,3 +91,12 @@ def postComentarios(request):
     posts = Post.objects.annotate(num_comments=Count('commentsPost')).order_by('-num_comments')
 
     return render(request,'post/postList.html', {'posts':posts})
+
+class PostByCategoryView(ListView):
+    model = Post
+    template_name = 'categorias/categoriaFilter.html'
+    context_object_name = 'postByCategory'
+
+    def get_queryset(self):
+        category_id = self.kwargs['category_id']
+        return Post.objects.filter(category_id=category_id)
