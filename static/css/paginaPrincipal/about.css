@@ -1,0 +1,49 @@
+.titulo {
+    background-color: #104e37;
+    color: white;
+    width: fit-content;
+    margin: 0 auto;
+    padding: 6px ;
+}
+
+.div-acerca-de-nosotros {
+    max-width: 900px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+.texto-titulo {
+    color: #e8f1ee;
+}
+
+.texto-grande {
+    color: #104e37;
+}
+
+.texto {
+    color: #333;
+    font-size: 1.1em;
+}
+
+.img-emprendemos {
+    max-width: 100%;
+    border-radius: 8px;
+    display: block;
+    margin: 20px 0;
+}
+
+.lista-emprendemos {
+    list-style-type: none;
+    padding: 0;
+}
+
+.lista-emprendemos li {
+    padding: 8px;
+    font-size: 1.1em;
+    color: #555;
+}
+

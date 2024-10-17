@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block css %}
     {{ block.super }}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/base/base.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/paginaPrincipal/about.css' %}">
 {% endblock %}
 
 {% block js %}
@@ -10,114 +11,31 @@
 {% endblock %}
 
 {% block content %}
+    <div class="d-flex justify-content-center align-items-center titulo">
+        <h1 class="texto-titulo">Acerca de Emprendemos Chaco</h1>
+    </div>
+        
+    <div class="div-acerca-de-nosotros mt-4">
+        <h2 class="texto-grande">¿Quiénes somos?</h2>
+        <p class="texto"><strong>Emprendemos Chaco</strong> es una plataforma creada para conectar, visibilizar y apoyar a los emprendedores de la provincia de Chaco. Desde su fundación en 2024, nuestro objetivo ha sido construir un ecosistema emprendedor sólido, donde la creatividad, la innovación y el trabajo en equipo sean los motores de cambio.</p>
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Conoce más sobre los emprendedores de Chaco y cómo estamos apoyando el crecimiento del ecosistema emprendedor en la región.">
-    <title>Acerca de Nosotros - Emprendemos Chaco</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-        }
+        <h2 class="texto-grande">Nuestra misión</h2>
+        <p class="texto">Empoderar a los emprendedores chaqueños, brindándoles herramientas, visibilidad y una comunidad activa para que puedan desarrollar sus proyectos, crecer y generar un impacto positivo en la economía local.</p>
 
-        header {
-            background-color: #104e37;
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
+        <h2 class="texto-grande">Nuestra visión</h2>
+        <p class="texto">Ser el referente de apoyo a emprendedores en la provincia de Chaco, promoviendo la colaboración entre pequeñas empresas, generando oportunidades de networking, y posicionando a Chaco como un polo de innovación en el norte de Argentina.</p>
 
-        .container {
-            max-width: 900px;
-            margin: 20px auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            color: #e8f1ee;
-        }
-
-        h2 {
-            color: #104e37;
-        }
-
-        p {
-            color: #333;
-            font-size: 1.1em;
-        }
-
-        img {
-            max-width: 100%;
-            border-radius: 8px;
-            display: block;
-            margin: 20px 0;
-        }
-
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        ul li {
-            padding: 8px;
-            font-size: 1.1em;
-            color: #555;
-        }
-
-        .footer {
-            text-align: center;
-            padding: 10px;
-            background-color: #2E6D6E;
-            color: white;
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <h1>Acerca de Emprendemos Chaco</h1>
-    </header>
-
-    <div class="container">
-        <h2>¿Quiénes somos?</h2>
-        <p><strong>Emprendemos Chaco</strong> es una plataforma creada para conectar, visibilizar y apoyar a los emprendedores de la provincia de Chaco. Desde su fundación en 2024, nuestro objetivo ha sido construir un ecosistema emprendedor sólido, donde la creatividad, la innovación y el trabajo en equipo sean los motores de cambio.</p>
-
-        <h2>Nuestra misión</h2>
-        <p>Empoderar a los emprendedores chaqueños, brindándoles herramientas, visibilidad y una comunidad activa para que puedan desarrollar sus proyectos, crecer y generar un impacto positivo en la economía local.</p>
-
-        <h2>Nuestra visión</h2>
-        <p>Ser el referente de apoyo a emprendedores en la provincia de Chaco, promoviendo la colaboración entre pequeñas empresas, generando oportunidades de networking, y posicionando a Chaco como un polo de innovación en el norte de Argentina.</p>
-
-        <h2>¿Por qué emprendemos juntos?</h2>
-        <ul>
+        <h2 class="texto-grande">¿Por qué emprendemos juntos?</h2>
+        <ul class="lista-emprendemos">
             <li><strong>Apoyo Local:</strong> Fomentamos la colaboración entre emprendedores chaqueños, creando sinergias que permitan el crecimiento colectivo.</li>
             <li><strong>Visibilidad:</strong> Ofrecemos una plataforma online para que los emprendedores puedan exponer sus productos, servicios y proyectos ante una audiencia más amplia.</li>
             <li><strong>Red de contactos:</strong> Facilitamos el acceso a eventos, mentorías, y programas de formación que ayudan a fortalecer las capacidades de los emprendedores.</li>
             <li><strong>Impacto Social:</strong> Creemos que cada emprendimiento tiene el potencial de generar un cambio positivo en nuestra comunidad, y por eso apoyamos la innovación con responsabilidad social.</li>
         </ul>
-        <img src="{% static 'img/aboutus.jpg' %}" alt="acerca de nosotros">
+        <img class="img-emprendemos" src="{% static 'img/aboutus.jpg' %}" alt="acerca de nosotros">
 
-        <h2>Conoce a los emprendedores</h2>
-        <p>En nuestra página encontrarás historias inspiradoras de emprendedores que han comenzado con una idea y, con mucho esfuerzo y pasión, han logrado construir proyectos exitosos. Nos enorgullece ser parte de su viaje.</p>
-        <img src="{% static 'img/emprendedor.jpg' %}" alt="Emprendedor">
+        <h2 class="texto-grande">Conoce a los emprendedores</h2>
+        <p class="texto">En nuestra página encontrarás historias inspiradoras de emprendedores que han comenzado con una idea y, con mucho esfuerzo y pasión, han logrado construir proyectos exitosos. Nos enorgullece ser parte de su viaje.</p>
+        <img class="img-emprendemos" src="{% static 'img/emprendedor.jpg' %}" alt="Emprendedor">
     </div>
-    
-</body>
-</html>
-
-
-
 {% endblock content %}

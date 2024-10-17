@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block css %}
     {{ block.super }}
@@ -11,33 +12,26 @@
 {% endblock %}
 
 {% block titulo %}
-  Registro
+  
 {% endblock titulo %}
 
 {% block content %}
 
-    
+<section class="form-register">
     <form action="" method="POST" enctype="multipart/form-data">{% csrf_token %}
     {{form.errors}}
-      <section class="form-register">
         <h4>Formulario de Registro</h4>
          <!-- Creo los imput para que el usuario ingrese sus datos -->
-        <input class="controls" type="text" name="username" id="Usuario" placeholder="Ingrese su Usuario">
-        <input class="controls" type="text" name="first_name" id="nombre" placeholder="Ingrese su Nombre/s">
-        <input class="controls" type="text" name="last_name" id="Apellido" placeholder="Ingrese su Apellido">
-        <input class="controls" type="email" name="email" id="email" placeholder="Ingrese su Email">
-        <input class="controls" type="password" name="password1" id="contraseñas" placeholder="Ingrese la Contraseña">
-        <input class="controls" type="password" name="password2" id="contraseñas" placeholder="Ingrese la Contraseña"> 
+         {{ form | crispy }}
         <!-- Mensaje de si el usuario esta de acuerdo con los terminos y conficiones -->
 
-        <p>Estoy de acuerdo con <a href="#">Terminos y condiciones</a></p>
+        <p>Estoy de acuerdo con <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">Terminos y condiciones</a></p>
          <!-- Creamos el boton para que el usuario pueda registrarse -->
          <button class="botons" type="submit">Registrar</button>
          <!-- url que pregunta si el usuario ya tiene cuenta y lo redireccione a la pagina del Login o inicio de sesion -->
         <a href= "{% url 'usuarios:login' %}">¿Ya tienen Cuenta?</a>
-
-        
     </form>
+</section>
 
 
 {%  endblock content %}
