@@ -21,7 +21,7 @@
         <div class="container col-9 mb-4" id="post_contenido">
             <div class="container mb-3 mt-3 d-flex justify-content-between">
                 <div class="d-flex">
-                        {% if user.id == post.user.id %}
+                    {% if user.id == post.user.id %}
                     <form class="justify-content-start mt-3" method="post" action="{% url 'post:deletePost' post.id %}">
                         {% csrf_token %}
                         <button type="submit" value="Comfirm" class="me-4 btn btn-outline-danger">
@@ -60,11 +60,6 @@
                     {% if not user.is_authenticated %}
                         <div class="alert alert-primary">¿Te gustó lo que viste? Inicia sesión y comenta</div>
                     {% endif %}
-                    {% if user.is_authenticated %}
-                        <div class="col d-flex justify-content-center">     
-                            <a class="btn btn-outline-info" href="{% url 'post:nuevoComentario' post.pk %}">Comentar</a>                           
-                        </div>
-                    {% endif %}
                 </div>
             </div>
         </div>
@@ -81,15 +76,22 @@
                     <small><strong>{{ p.user.username }} - {{ p.publish_date }}</strong></small>
                     <br/>
                     {{ p.content|linebreaks }}
+                    {% if user == p.user %}
+                        <div class="d-flex justify-content-end">
+                            <a class="btn btn-sm btn-outline-warning me-2" href="{% url 'post:editarComentario' p.pk %}">Editar</a>
+                            <a class="btn btn-sm btn-outline-danger" href="{% url 'post:eliminarComentario' p.pk %}">Eliminar</a>
+                        </div>
+                    {% endif %}
                     <hr/>
                 </div>
             {% endfor %}    
         {% else %}
-           {% if user.is_authenticated %}      
-                <div class="alert alert-danger">No hay comentarios aún, ¡sé el primero en comentar!</div> 
-            {% else %}
-                <div class="alert alert-danger">Para ver y poder comentar, tienes que Iniciar Sesión!</div> 
-            {% endif %}          
+            <div class="alert alert-danger">No hay comentarios aún</div>          
+        {% endif %}
+        {% if user.is_authenticated %}
+            <div class="col d-flex justify-content-center mb-3">     
+                <a class="btn btn-outline-info" href="{% url 'post:nuevoComentario' post.pk %}">Comentar</a>                           
+            </div>
         {% endif %}
     </div>
 </div>

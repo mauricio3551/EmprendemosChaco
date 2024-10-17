@@ -40,6 +40,21 @@ class PostListView(ListView):
     template_name = 'post/postList.html'
     context_object_name = 'posts'
 
+    def get_queryset(self):
+        queryset = Post.objects.all()
+        order = self.request.GET.get('order', 'date_desc')
+
+        if order == 'date_asc':
+            queryset = queryset.order_by('publish_date')
+        elif order == 'date_desc':
+            queryset = queryset.order_by('-publish_date')
+        elif order == 'title_asc':
+            queryset = queryset.order_by('title')
+        elif order == 'title_desc':
+            queryset = queryset.order_by('-title')
+
+        return queryset
+
 class PostEditarView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
     form_class = EditPostForm
@@ -96,6 +111,37 @@ def postComentarios(request):
 
     return render(request,'post/postList.html', {'posts':posts})
 
+class EditComentarioView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Comment
+    fields = ['content']
+    template_name = 'post/editCommentForm.html'
+
+    def get_success_url(self):
+        return reverse_lazy('post:mostrarPost', kwargs={'pk': self.object.post.pk})
+
+    def get_queryset(self):
+        return Comment.objects.filter(user=self.request.user)
+    
+    def test_func(self):
+        comment = self.get_object()
+        return self.request.user == comment.user
+
+class DeleteComentarioView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Comment
+    template_name = 'post/deleteComment.html'
+
+    def get(self, request, *args, **kwargs):
+        return self.post(request, *args, **kwargs)
+
+    def get_success_url(self):
+        return reverse_lazy('post:mostrarPost', kwargs={'pk': self.object.post.pk})
+
+    def get_queryset(self):
+        return Comment.objects.filter(user=self.request.user)
+    
+    def test_func(self):
+        comment = self.get_object()
+        return self.request.user == comment.user or self.request.user.is_superuser
 #--------------------CATEGORIA-----------------------
 
 class PostByCategoryView(ListView):
