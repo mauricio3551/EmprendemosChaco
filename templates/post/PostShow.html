@@ -82,6 +82,11 @@
                             <a class="btn btn-sm btn-outline-danger" href="{% url 'post:eliminarComentario' p.pk %}">Eliminar</a>
                         </div>
                     {% endif %}
+                    {% if user.id == post.user.id %}
+                        <div class="d-flex justify-content-end">
+                            <a class="btn btn-sm btn-outline-danger" href="{% url 'post:eliminarComentario' p.pk %}">Eliminar</a>
+                        </div>   
+                    {% endif %}
                     <hr/>
                 </div>
             {% endfor %}    

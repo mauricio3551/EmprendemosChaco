@@ -12,7 +12,7 @@ from apps.categoria.models import Categoria
 from apps.usuarios.models import NewUser
 
 
-class PostCrearView(LoginRequiredMixin, CreateView):
+class PostCrearView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = Post
     form_class = PostForm
     template_name = 'post/postForm.html'
@@ -25,6 +25,9 @@ class PostCrearView(LoginRequiredMixin, CreateView):
             ext = form.instance.thumbnail.name.split(".")[-1]
             form.instance.thumbnail.name = form.instance.title+'.'+ext
         return super().form_valid(form)
+    
+    def test_func(self):
+        return self.request.user.is_superuser or self.request.user.es_colaborador
     
 class PostMostrarView(DetailView):
     model = Post
