@@ -11,6 +11,9 @@ def Inicio(request):
 def Login(request):
     return render(request, '')
 
+def about(request):
+    return render(request, 'about.html')
+
 class CustomPasswordResetView(PasswordResetView):
     template_name = 'Usuarios/password_reset.html'
     email_template_name = 'Usuarios/password_reset_email.html'
