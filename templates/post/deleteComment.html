@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/post/postCreationSuccess.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="container d-flex justify-content-center">
+        <div class="ps-4 pe-4 pb-5 pt-5" id="cuadro_post_creado">
+            <h2>Eliminar comentario</h2>
+            <p>¿Estás seguro de que deseas eliminar este comentario?</p>
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Eliminar</button>
+                <a href="{% url 'post:mostrarPost' object.post.pk %}" class="btn btn-secondary">Cancelar</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

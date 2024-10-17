@@ -2,7 +2,7 @@
 {% load static %}
 {% block css %}
     {{ block.super }}
-    <link rel="stylesheet" type="text/css" href="{% static 'post/css/postList.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/post/postList.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -10,6 +10,41 @@
     <div class="row">
         <div class="col-12">
             {% if posts %}
+            <section class="container mb-3 form-register">
+                <form method="GET" action="" class="form-inline">
+                    <div class="form-group mb-2">
+                        <label class="mr-2">Ordenar por:</label>
+                        <div class="d-flex flex-wrap">
+                            <div class="custom-control custom-radio me-5">
+                                <input type="radio" id="date_desc" name="order" value="date_desc" class="custom-control-input" 
+                                {% if request.GET.order == 'date_desc' or not request.GET.order %}checked{% endif %}>
+                                <label class="custom-control-label" for="date_desc">Fecha Descendente</label>
+                            </div>
+            
+                            <div class="custom-control custom-radio me-5">
+                                <input type="radio" id="date_asc" name="order" value="date_asc" class="custom-control-input" 
+                                {% if request.GET.order == 'date_asc' %}checked{% endif %}>
+                                <label class="custom-control-label" for="date_asc">Fecha Ascendente</label>
+                            </div>
+            
+                            <div class="custom-control custom-radio me-5">
+                                <input type="radio" id="title_asc" name="order" value="title_asc" class="custom-control-input" 
+                                {% if request.GET.order == 'title_asc' %}checked{% endif %}>
+                                <label class="custom-control-label" for="title_asc">Título A-Z</label>
+                            </div>
+            
+                            <div class="custom-control custom-radio me-5">
+                                <input type="radio" id="title_desc" name="order" value="title_desc" class="custom-control-input" 
+                                {% if request.GET.order == 'title_desc' %}checked{% endif %}>
+                                <label class="custom-control-label" for="title_desc">Título Z-A</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-fluid d-flex justify-content-center align-items-center mt-3">
+                        <button type="submit" class="btn btn-primary">Refrescar</button>
+                    </div>
+                </form>
+            </section>
                 {% for post in posts %}
                     {% if forloop.first%}<div class="row">{% endif %}
                     <div class="col-4">

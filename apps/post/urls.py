@@ -15,6 +15,8 @@ urlpatterns = [
     #comentario
     path('post/<int:pk>/comentario', PostComentarioView.as_view(), name = 'nuevoComentario'),
     path('post/listar/comentario', postComentarios, name='listarComentarios'),
+    path('comentario/<int:pk>/editar/', EditComentarioView.as_view(), name='editarComentario'),
+    path('comentario/<int:pk>/eliminar/', DeleteComentarioView.as_view(), name='eliminarComentario'),
 
     #categoria
     path('post/categoria/<int:category_id>', PostByCategoryView.as_view(), name='postByCategory'),

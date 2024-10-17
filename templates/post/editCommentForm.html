@@ -12,6 +12,7 @@
 <div class="container comentario " style="margin-bottom: 100px;">
     <div class="row cuerpo rounded">
         <div class="col-12 item mt-5 mb-5">
+            <h2>Editar comentario</h2>
             <form method="post" class="text-white">
                 {% csrf_token %}
                     <div class="form-row">
@@ -19,7 +20,7 @@
                             {{ form.content|as_crispy_field }}                            
                         </div>
                     </div>
-                <button type="submit" class="btn btn-dark mt-5 btn-lg btn-block mb-4" value="CREAR COMENTARIO">CREAR COMENTARIO</button>   
+                <button type="submit" class="btn btn-dark mt-5 btn-lg btn-block mb-4" value="EDITAR COMENTARIO">EDITAR COMENTARIO</button>   
             </form>
         </div>
     </div>
