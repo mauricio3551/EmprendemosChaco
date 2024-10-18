@@ -2,7 +2,7 @@
 {% load static %}
 {% block css %}
     {{ block.super }}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/base/base.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/paginaPrincipal/index.css' %}">
 {% endblock %}
 
 {% block js %}
@@ -14,15 +14,29 @@
         <!-- CARROUSEL -->     
         <div id="carouselExample" class="carousel slide mt-3 mx-auto d-flex justify-content-center" style="max-width: 50%;">
             <div class="carousel-inner rounded">
-              {% for post in recentPosts %}  
-              <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                <a href="{% url 'post:mostrarPost' post.pk %}" target="_blank"><img class="d-block w-100" src="{{ post.thumbnail.url }}"></a>
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>{{ post.title }}</h5>
-                    <p>{{ post.content|truncatewords:5 }}...</p>
+                {% if recentPosts|length == 0 %}
+                <div class="carousel-item">
+                    <a href="#" target="_blank">
+                        <img class="d-block w-100 fixed-size-img" src="{% static 'img/fondo.jpg' %}">
+                    </a>
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>DUMMY</h5>
+                        <p>DUMMY</p>
+                    </div>
                 </div>
-              </div>
-              {% endfor %}
+                {% else %}
+                    {% for post in recentPosts %}  
+                    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                        <a href="{% url 'post:mostrarPost' post.pk %}" target="_blank">
+                            <img class="d-block w-100 fixed-size-img" src="{{ post.thumbnail.url }}">
+                        </a>
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>{{ post.title }}</h5>
+                            <p>{{ post.content|truncatewords:5 }}...</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% endif %}
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -36,46 +50,53 @@
         <!-- FIN CARROUSEL -->
 
         <!-- INICIO POST MAS VIEJOS -->
+        {% if olderPost|length != 4 %}
+        <div class="alert alert-danger mt-5 mb-3">No hay posteos aún</div>
+        {% else %} 
         <div class="container">            
             <div class="row row-cols-1 row-cols-md-2 mt-4">
                 <div class="col mb-4">
                     <div class="card text-white align-items-center pt-4 mt-4 " style="background-color: #404848;">
-                        <h1 class="card-title align-content-center mb-4">TEST POST 1</h5>
-                        <a href="..." target="_blank"><img class="d-inline-flex mb-4" src="{% static 'img/fondo.jpg' %}" width="100%" height="auto" float="left"></a>
+                        <h2 class="card-title align-content-center mb-4">{{ olderPost.0.title }}</h2>
+                        <a href="{% url 'post:mostrarPost'  olderPost.0.pk %}" target="_blank"><img class="d-inline-flex mb-4" src="{{ olderPost.0.thumbnail.url }}" style="width: 300px; height: 200px; object-fit: cover;"></a>
                         <div class="card-body mb-2">                    
-                        <p class="card-text p-4" style="background-color:#303535;">CONTENIDO POST 1.</p>
+                        <p class="card-text p-4" style="background-color:#303535;">{{ olderPost.0.content|truncatewords:5 }}...</p>
                         </div>
                     </div>
                 </div>
                 <div class="col mb-4">
-                    <div class="card text-white align-items-center pt-4 mt-4" style="background-color: #404848;">
-                        <h2 class="card-title align-content-center pl-4 pr-4 mb-4">TEST POST 2</h5>
-                        <a href="..." target="_blank"><img class="d-inline-flex mb-4" src="{% static 'img/fondo.jpg' %}" width="100%" height="auto" float="left"></a>
+                    <div class="card text-white align-items-center pt-4 mt-4 " style="background-color: #404848;">
+                        <h2 class="card-title align-content-center pl-4 pr-4 mb-4">{{ olderPost.1.title }}</h2>
+                        <a href="{% url 'post:mostrarPost'  olderPost.1.pk %}" target="_blank"><img class="d-inline-flex mb-4" src="{{ olderPost.1.thumbnail.url }}" style="width: 300px; height: 200px; object-fit: cover;"></a>
                         <div class="card-body mb-2">                    
-                        <p class="card-text p-4" style="background-color:#303535;">CONTENIDO POST 2</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col mb-4">
-                    <div class="card text-white align-items-center pt-4 " style="background-color: #404848;">
-                        <h2 class="card-title align-content-center pl-4 pr-4 mb-4">TEST POST 3</h5>
-                        <a href="..." target="_blank"><img class="d-inline-flex mb-4" src="{% static 'img/fondo.jpg' %}" width="100%" height="auto" float="left"></a>
-                        <div class="card-body mb-2">                    
-                        <p class="card-text p-4" style="background-color:#303535;">CONTENIDO POST 3</p>
+                        <p class="card-text p-4" style="background-color:#303535;">{{ olderPost.1.content|truncatewords:5 }}</p>
                         </div>
                     </div>
                 </div>
                 <div class="col mb-4">
                     <div class="card text-white align-items-center pt-4 " style="background-color: #404848;">
-                        <h2 class="card-title align-content-center pl-4 pr-4 mb-4">TEST POST 4</h5>
-                        <a href="..." target="_blank"><img class="d-inline-flex mb-4" src="{% static 'img/fondo.jpg' %}" width="100%" height="auto" float="left"></a>
+                        <h2 class="card-title align-content-center pl-4 pr-4 mb-4">{{ olderPost.2.title }}</h2>
+                        <a href="{% url 'post:mostrarPost'  olderPost.2.pk %}" target="_blank"><img class="d-inline-flex mb-4" src="{{ olderPost.2.thumbnail.url }}" style="width: 300px; height: 200px; object-fit: cover;"></a>
                         <div class="card-body mb-2">                    
-                        <p class="card-text p-4" style="background-color:#303535;">CONTENIDO POST 4</p>
+                        <p class="card-text p-4" style="background-color:#303535;">{{ olderPost.2.content|truncatewords:5 }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-4">
+                    <div class="card text-white align-items-center pt-4 " style="background-color: #404848;">
+                        <h2 class="card-title align-content-center pl-4 pr-4 mb-4">{{ olderPost.3.title }}</h2>
+                        <a href="{% url 'post:mostrarPost'  olderPost.3.pk %}" target="_blank"><img class="d-inline-flex mb-4" src="{{ olderPost.3.thumbnail.url }}" style="width: 300px; height: 200px; object-fit: cover;"></a>
+                        <div class="card-body mb-2">                    
+                        <p class="card-text p-4" style="background-color:#303535;">{{ olderPost.3.content|truncatewords:5 }}</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="mt-2 mb-4 d-flex justify-content-center">
+            <a href="{% url 'post:listarPost' %}" class="nav-link btn btn-navbar" style="color: #ffffff;">Mostrar post mas viejos</a>
+        </div>
+        {% endif %}
         <!-- FIN POST MAS VIEJOS -->
     </div>  
 {% endblock content %}

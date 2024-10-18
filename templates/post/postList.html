@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/post/postList.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container mb-5">
+    <div class="row">
+        <div class="col-12">
+            {% if posts %}
+            <section class="container mb-3 form-register">
+                <form method="GET" action="" class="form-inline">
+                    <div class="form-group mb-2">
+                        <label class="mr-2">Ordenar por:</label>
+                        <div class="d-flex flex-wrap">
+                            <div class="custom-control custom-radio me-5">
+                                <input type="radio" id="date_desc" name="order" value="date_desc" class="custom-control-input" 
+                                {% if request.GET.order == 'date_desc' or not request.GET.order %}checked{% endif %}>
+                                <label class="custom-control-label" for="date_desc">Fecha Descendente</label>
+                            </div>
+            
+                            <div class="custom-control custom-radio me-5">
+                                <input type="radio" id="date_asc" name="order" value="date_asc" class="custom-control-input" 
+                                {% if request.GET.order == 'date_asc' %}checked{% endif %}>
+                                <label class="custom-control-label" for="date_asc">Fecha Ascendente</label>
+                            </div>
+            
+                            <div class="custom-control custom-radio me-5">
+                                <input type="radio" id="title_asc" name="order" value="title_asc" class="custom-control-input" 
+                                {% if request.GET.order == 'title_asc' %}checked{% endif %}>
+                                <label class="custom-control-label" for="title_asc">Título A-Z</label>
+                            </div>
+            
+                            <div class="custom-control custom-radio me-5">
+                                <input type="radio" id="title_desc" name="order" value="title_desc" class="custom-control-input" 
+                                {% if request.GET.order == 'title_desc' %}checked{% endif %}>
+                                <label class="custom-control-label" for="title_desc">Título Z-A</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-fluid d-flex justify-content-center align-items-center mt-3">
+                        <button type="submit" class="btn btn-primary">Refrescar</button>
+                    </div>
+                </form>
+            </section>
+                {% for post in posts %}
+                    {% if forloop.first%}<div class="row">{% endif %}
+                    <div class="col-4">
+                        <div class="card mt-5" style="background-color: #303535; color: #FFFFFF;">
+                            {% if post.thumbnail %}
+                                <img class="" height="280" src="{{ post.thumbnail.url }}">
+                            {% else %}
+                                <img src="{% static 'img/fondo.jpg' %}" height="280" class="" alt="...">
+                            {% endif %}
+                            <div class="card-body" style="background-color: #303535; color: #FFFFFF;">
+                                <h5 clas="card-title">{{ post.title }}</h5>
+                                <h6 class="card-subtitle">Autor: {{ post.user }} </h6>
+                                <p class="card-text">Categoría: {{ post.category.name }} </p>
+                                <p class="card-text">Fecha: {{ post.publish_date }}</p>
+                                <div class="card-body mt-2 d-flex justify-content-center">
+                                    <a href="{% url 'post:mostrarPost' post.id %}" class="btn btn-primary">Ir al post</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% if forloop.counter|divisibleby:3 %} </div><div class="row">{% endif%}
+                    {% if forloop.last %}</div>{% endif %}
+                {% endfor %}
+
+            {% else %}
+                <div class="alert alert-danger">No hay nada acá</div>
+            {% endif %}
+        </div>
+    </div>
+</div>  
+{% endblock %}

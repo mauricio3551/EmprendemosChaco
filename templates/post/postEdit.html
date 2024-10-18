@@ -5,7 +5,7 @@
 
 {% block css %}
 {{ block.super }}
-<link rel="stylesheet" type="text/css" href="{% static 'css/categoria/categoriaForm.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/post/postForm.css' %}">
 {% endblock %}
 
 {% block js %}
@@ -18,13 +18,9 @@
         <form method="post" enctype="multipart/form-data" action="">
             {% csrf_token %}
 
-            <div class="form-row mt-4">
-                <div class="form-group col-12">
-                    {{ form.as_p }}
-                </div>
-            </div>
+            {{ form|crispy }}
 
-            <button type="submit" class="btn btn-outline-primary btn-lg btn-block mb-4 mt-4" value="CREAR CATEGORIA">CREAR CATEGORIA</button>
+            <button type="submit" class="btn btn-outline-primary btn-lg btn-block mb-4 mt-4" value="CREAR POST">EDITAR POST</button>
         </form>
     </div>
 </div>

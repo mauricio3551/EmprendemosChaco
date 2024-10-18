@@ -17,16 +17,17 @@
             <!-- Creo los imput para que el usuario ingrese sus datos -->
             <input class="controls" type="text" name="username" id="usuario" placeholder="Ingrese su Usuario">
             <input class="controls" type="password" name="password" id="contraseñas" placeholder="Ingrese la Contraseña">
-            <!-- Mensaje de si el usuario esta de acuerdo con los terminos y conficiones -->
-            <p>Estoy de acuerdo con <a href="#">Terminos y condiciones</a></p>
-            <a class="text-white mb-2 mr-2">¿Se olvido la contraseña? Puede recuperarla</a>
-            <a href="{% url 'password_reset' %}">
-                <button>AQUI</button>
-                
-            </a>
+
             <!-- Creamos el boton para que el usuario pueda registrarse -->
             <input class="botons" type="submit" value="Iniciar Sesion">
     </form>
+    <!-- Mensaje de si el usuario esta de acuerdo con los terminos y conficiones -->
+    <p>Estoy de acuerdo con <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">Terminos y condiciones</a></p>
+    <a class="text-white mb-2 mr-2">¿Se olvido la contraseña? Puede recuperarla</a>
+    <a href="{% url 'password_reset' %}">
+        <button>AQUI</button>
+        
+    </a>
 </section>
 {% endblock content %}
 

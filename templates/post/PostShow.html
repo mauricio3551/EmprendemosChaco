@@ -19,8 +19,33 @@
     </div>
     <div class="row">
         <div class="container col-9 mb-4" id="post_contenido">
-            <div class="container mb-3 mt-3 d-flex justify-content-end">
-                <p><b>Post creado por {{ object.user.username }} - {{ object.publish_date }}</b></p>
+            <div class="container mb-3 mt-3 d-flex justify-content-between">
+                <div class="d-flex">
+                    {% if user.id == post.user.id %}
+                    <form class="justify-content-start mt-3" method="post" action="{% url 'post:deletePost' post.id %}">
+                        {% csrf_token %}
+                        <button type="submit" value="Comfirm" class="me-4 btn btn-outline-danger">
+                            <b>Eliminar</b>
+                        </button>
+                    </form>
+                    <div class="justify-content-start mt-3" >
+                        <a href="{% url 'post:editarPost' post.id %}" type="submit" value="Comfirm" class="btn btn-outline-warning">
+                            <b>Editar</b>
+                        </a>
+                    </div>
+            
+                    {% elif user.is_superuser %}
+                    <form class="ms-1 me-1" method="post" action="{% url 'post:deletePost' post.id %}">
+                        {% csrf_token %}
+                        <button type="submit" value="Comfirm" class="btn btn-outline-danger btn-sm">
+                            <b>Eliminar</b>
+                        </button>
+                    </form>
+                    {% endif %}
+                </div>
+                <div class="mt-3" >
+                    <p><b>Post creado por {{ object.user.username }} - {{ object.publish_date }}</b></p>
+                </div>
             </div>
             <div class="mt-1 mb-2">
                 <div class="d-flex justify-content-center pt-4 pb-4">
@@ -35,54 +60,12 @@
                     {% if not user.is_authenticated %}
                         <div class="alert alert-primary">¿Te gustó lo que viste? Inicia sesión y comenta</div>
                     {% endif %}
-                    <!--{% if user.is_authenticated %}
-                        <div class="col d-flex justify-content-center">     
-                            <a class="btn btn-outline-info" href="#">Comentar</a>                           
-                        </div>
-                    {% endif %}-->
                 </div>
             </div>
         </div>
-        <!-- ACA VAN LAS OPCIONES PARA MODIFICAR O ELIMINAR POST
-        <div class="container col-3 mb-4 justify-content-center" id="post_contenido">
-            <div class="row">
-                {% if user.id == post.user.id %}
-                    <form class="col-5 justify-content-center mt-3" method="post" action="#">
-                        {% csrf_token %}
-                        <button type="submit" value="Comfirm" class="me-4 btn btn-outline-danger">
-                            <b>ELIMINAR</b>
-                        </button>
-                    </form>
-                    <div class="col-5 justify-content-center mt-3" >
-                        <a href="#" type="submit" value="Comfirm" class="btn btn-outline-warning">
-                            <b>Editar</b>
-                        </a>
-                    </div>
-            
-                {% elif user.is_superuser %}
-                    <form class="ms-1 me-1" method="post" action="#">
-                        {% csrf_token %}
-                        <button type="submit" value="Comfirm" class="btn btn-outline-danger btn-sm">
-                            <b>ELIMINAR</b>
-                        </button>
-                    </form>
-                {% endif %}-->
-                <!--<div>
-                    {% if object.user.image %}
-                        <img class="img-thumbnail rounded mt-4" src="{{ object.user.image.url }}"></img>
-                    {% else %}
-                        <img class="img-thumbnail rounded mt-4" src="{% static 'usuario/imagen/Avatar.jpg' %}"></img>
-                    {% endif %}
-        
-                    <div class="d-flex justify-content-center mt-4">
-                        <h4>{{ object.user.username }}</h4>
-                    </div>
-                </div>
-            </div>
-        </div>-->
     </div>
 </div>
-<!--<div class="container">
+<div class="container">
     <div class="row mb-5" id="ComentariosContenido">
         <div class="mt-3 mb-3">
             <h4 id="tituloComentarios">COMENTARIOS:</h4>
@@ -90,19 +73,31 @@
         {% if object.commentsPost.all %}
             {% for p in object.commentsPost.all %}
                 <div class="col-12 mb-2">
-                    <small><strong>{{ p.user.username }} - {{ p.timestamp }}</strong></small>
+                    <small><strong>{{ p.user.username }} - {{ p.publish_date }}</strong></small>
                     <br/>
                     {{ p.content|linebreaks }}
+                    {% if user == p.user %}
+                        <div class="d-flex justify-content-end">
+                            <a class="btn btn-sm btn-outline-warning me-2" href="{% url 'post:editarComentario' p.pk %}">Editar</a>
+                            <a class="btn btn-sm btn-outline-danger" href="{% url 'post:eliminarComentario' p.pk %}">Eliminar</a>
+                        </div>
+                    {% endif %}
+                    {% if user.id == post.user.id %}
+                        <div class="d-flex justify-content-end">
+                            <a class="btn btn-sm btn-outline-danger" href="{% url 'post:eliminarComentario' p.pk %}">Eliminar</a>
+                        </div>   
+                    {% endif %}
                     <hr/>
                 </div>
             {% endfor %}    
         {% else %}
-           {% if user.is_authenticated %}      
-                <div class="alert alert-danger">No hay comentarios aún, ¡sé el primero en comentar!</div> 
-            {% else %}
-                <div class="alert alert-danger">Para ver y poder comentar, tienes que Iniciar Sesión!</div> 
-            {% endif %}          
+            <div class="alert alert-danger">No hay comentarios aún</div>          
+        {% endif %}
+        {% if user.is_authenticated %}
+            <div class="col d-flex justify-content-center mb-3">     
+                <a class="btn btn-outline-info" href="{% url 'post:nuevoComentario' post.pk %}">Comentar</a>                           
+            </div>
         {% endif %}
     </div>
-</div>-->
+</div>
 {% endblock %}
