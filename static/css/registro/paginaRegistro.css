@@ -9,7 +9,7 @@ body {
 }
 .form-register{
     width: 400px;
-    background: linear-gradient(to bottom, #37404d, #0e5868, #007061, #4a823b, #a08610);
+    background: linear-gradient(to bottom, #5b5c60, #5c5e63, #5d5f66, #5d616a, #5e636d, #5b636e, #58636e, #54636e, #4e616a, #485f65, #435d5f, #405a59);
     padding: 30px;
     margin: auto;
     margin-top: 100px;
@@ -18,6 +18,7 @@ body {
     font-family: 'calibri';
     color: white;
     box-shadow: 7px 13px 37px #000;
+    display: flex;
     align-items: center;
     
 }
