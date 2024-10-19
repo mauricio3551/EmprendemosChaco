@@ -9,7 +9,7 @@ SECRET_KEY = 'django-insecure-9!03f=nox@ry&tz%gk+p(zi1er0alpy^318qrz8317&v8iga%)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['mauri2551.pythonanywhere.com' ]
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
