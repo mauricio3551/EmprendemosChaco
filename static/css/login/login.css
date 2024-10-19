@@ -7,9 +7,11 @@
 body {
     background-image: url('fondo2.jpg');
 }
+
+
 .form-register{
     width: 400px;
-    background: #961919ea;
+    background: linear-gradient(to bottom, #5b5c60, #5c5e63, #5d5f66, #5d616a, #5e636d, #5b636e, #58636e, #54636e, #4e616a, #485f65, #435d5f, #405a59);
     padding: 30px;
     margin: auto;
     margin-top: 100px;
@@ -18,8 +20,8 @@ body {
     font-family: 'calibri';
     color: white;
     box-shadow: 7px 13px 37px #000;
+    display: flex;
     align-items: center;
-    
 }
 
 .form-register h4 {
